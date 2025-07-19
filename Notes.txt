@@ -1,0 +1,7 @@
+Layout:
+
+HERO section
+About Me
+Projects
+Education
+Contact
