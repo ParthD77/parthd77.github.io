@@ -40,3 +40,40 @@ function resetTypeWriter() {
 }
 
 iAmTypeWriter();
+
+
+function togglePanel(panel) {
+    var isOpen = panel.style.transform === 'scaleX(1)';
+    if (isOpen) {
+        panel.style.transform = 'scaleX(0)';
+    } else {
+        panel.style.transform = 'scaleX(1)';
+    }
+}
+
+function setupAllToggleButtons() {
+    var wrappers = document.querySelectorAll('.imagelinkwrapper');
+    for (var i = 0; i < wrappers.length; i++) {
+        var img = wrappers[i].querySelector('img');
+        var panel = wrappers[i].querySelector('.slideoutpanel');
+        if (img && panel) {
+            img.addEventListener('click', (function(panelRef) {
+                return function() {
+                    togglePanel(panelRef);
+                };
+            })(panel));
+        }
+    }
+}
+
+window.addEventListener('load', setupAllToggleButtons);
+
+
+const input = document.getElementById("chatinput");
+const maxlength = input.getAttribute("maxlength");
+const charCount = document.getElementById("charCount");
+
+input.addEventListener("input", function() {
+    const remainingChars = input.value.length;
+    charCount.textContent = "Character limit: " + remainingChars + "/" + maxlength;
+});

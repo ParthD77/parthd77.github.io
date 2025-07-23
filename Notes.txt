@@ -1,7 +1,17 @@
 Layout:
 
 HERO section
+AI bot
 About Me
 Projects
 Education
 Contact
+
+
+scrolling aniamtiosn where boxes and divs move into place a little
+ai gpt wrapper tahts know all abouit me
+3d model
+
+
+
+maybe have the icons on the left close when you scroll
