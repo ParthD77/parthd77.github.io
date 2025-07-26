@@ -4,6 +4,29 @@ html, body {
     padding: 0;
 }
 
+h1{
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2rem, 5vw, 5rem);
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: white;
+    text-align: center;
+}
+h2 {
+    font-size: clamp(2rem, 5vw, 5rem);
+    margin-bottom: 30px;
+    text-align: center;
+    color: white;
+}
+p {
+    font-size: clamp(1rem, 1.5vw, 2rem);
+    margin-top: 0.2em;
+    font-weight: 600;
+    color: white;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 
 .navbar {
     position: sticky;
@@ -17,13 +40,17 @@ html, body {
     align-items: center;
     margin-bottom: 100px;
 }
-
 /* Optional: space out nav links */
 .navbar nav a {
   margin-left: 20px;
   text-decoration: none;
   color: black;
   font-weight: bold;
+}
+.navbar h2 {
+    color: black;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 
@@ -32,26 +59,9 @@ html, body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 400vh;
     z-index: -1;
     pointer-events: none;
-}
-
-
-#heroflex {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    width: fit-content;
-    z-index: 1;
-    text-align: left;
-    margin: auto;
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.5rem, 2vw, 2rem);
-    font-optical-sizing: auto;
-    font-style: normal;
-    color: white;
-    max-width: 60vw;
 }
 
 
@@ -104,19 +114,27 @@ html, body {
 }
 
 
+#heroflex {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: fit-content;
+    z-index: 1;
+    text-align: left;
+    margin: auto;
+    max-width: 60vw;
+}
 #hello_image {
     display: flex;
     flex-direction: row;
 }
-
 #herohello {
     margin: 0;
 }
-
 #heroname {
     color: red;
 }
-
 #wave-hand {
     width: 1.2em;
     height: 1.2em;
@@ -124,22 +142,13 @@ html, body {
     animation: wave 2s infinite;
     vertical-align: top;
 }
-
 #herointro {
-    font-size: 1.5em;
-    margin-top: 0.3em;
-    margin-bottom: 0;
+    font-size: 2.8em;
 }
-
 #heropara {
     color: red;
 }
 
-#herobody {
-    font-size: 1em;
-    margin-top: 0.2em;
-    font-weight: 600;
-}
 
 #chatbot {
     display: flex;
@@ -156,23 +165,19 @@ html, body {
     color: white;
     max-width: 60vw;
 }
-
 #chatbot h3 {
     margin: 0;
     font-size: 1em;
 }
-
 #chatbot p {
     margin: 0;
     font-size: 0.5em;
 }
-
 #chatform {
     margin: 0;
     display: flex;
     flex-direction: row;
 }
-
 #chatform input {
     width: 100%;
     height: 1em;
@@ -182,7 +187,6 @@ html, body {
     border-radius: 4px;
     margin-top: 0.5em;
 }
-
 #chatform button {
     position: absolute;
     top: 50%;
@@ -200,6 +204,98 @@ html, body {
 
 
 
+
+#about-me {
+  margin-top: 50vw;
+}
+#about-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 80vw;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+#about-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+#pfp {
+  width: 45%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #ccc;
+  margin-bottom: 15px;
+}
+#tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+.tag {
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: white;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+.tag-blue { background-color: #007BFF; }
+.tag-green { background-color: #28a745; }
+.tag-yellow { background-color: #ffc107; color: #222; }
+.tag-red { background-color: #dc3545; }
+#about-right {
+  flex: 2;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  padding-top: 10px;
+}
+#about-right p {
+  margin-bottom: 16px;
+}
+
+
+#projects {
+  text-align: center;
+  position: relative;
+  top: 8rem;
+  margin-top: 50vh;
+}
+#project-title {
+  position: sticky;
+  top: 8rem;
+}
+.project {
+  position: sticky;
+  height: 200px;
+  top: 15rem;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  margin: 20px auto;
+  max-width: 600px;
+}
+.project p {
+  color: #000;
+}
+.proj1 {
+  top: 15rem;
+}
+.proj2 {
+  top: 17rem;
+}
+.proj3 {
+  top: 19rem;
+}
+.proj4 {
+  top: 21rem;
+}
+.proj5 {
+  top: 23rem;
+}
 
 @keyframes wave {
     0% { transform: rotate(0deg); }

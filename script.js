@@ -11,6 +11,11 @@ VANTA.TOPOLOGY({
     color: 0xff6600,
     backgroundColor: 0x000000
 });
+// parallax on scroll
+window.addEventListener("scroll", () => {
+  const scrollY = window.scrollY;
+  document.getElementById("vanta-bg").style.transform = `translateY(${scrollY * -0.2}px)`;
+});
 
 
 var i = 0;
