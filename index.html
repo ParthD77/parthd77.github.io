@@ -122,24 +122,53 @@
 
     <section id="education">
       <h1>Education</h1>
-      <div class="side left">
-        <p>HighSchool</p>
-        <img src="assets/highschool.png" alt="HighSchool">
+      <div class="side hs">
+        <h3>HighSchool</h3>
+        <p>Graduated from David Suzuki Secondary School</p>
       </div>
 
-      <div class="side mid"></div>
-
-      <div class="side right">
-        <p>Uoft</p>
-        <img src="assets/uoft.png" alt="University of Toronto">
-
+      <div class="side mid-bar">
+        <img src="assets/hs.png" alt="HighSchool" id="hs-img">
+        <img src="assets/uoft.png" alt="University of Toronto" id="uoft-img">
       </div>
 
+      <div class="side uni">
+        <h3>University of Toronto</h3>
+        <p>Majoring computer science with a dual minor in math and statistics.</p>
+
+      </div>
+    </section>
+
+
+    <section id="contact">
+      <h2>Contact.</h2>
+      <div class="contact-container">
+        <form id="contact-form">
+          <div class="input-group">
+            <label><i class="fas fa-user"></i> Name</label>
+            <input type="text" name="name" placeholder="Your name" required>
+          </div>
+
+          <div class="input-group">
+            <label><i class="fas fa-envelope"></i> Email</label>
+            <input type="email" name="email" placeholder="Your email" required>
+          </div>
+
+          <div class="input-group">
+            <label><i class="fas fa-comment-dots"></i> Message</label>
+            <textarea name="message" placeholder="Write your message..." required></textarea>
+          </div>
+
+          <button type="submit">
+            Send Message <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
     </section>
 
 
 
-    <div style="height: 5000px"></div>
+
     <script src="script.js"></script>
 
   </body>
