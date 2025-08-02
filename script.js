@@ -1,20 +1,20 @@
-VANTA.TOPOLOGY({
-    el: "#vanta-bg",
-    mouseControls: true,
-    touchControls: true,
-    gyroControls: false,
-    minHeight: 200.00,
-    minWidth: 200.00,
-    scale: 1.00,
-    scaleMobile: 1.00,
-    mobile: true,
-    color: 0xff6600,
-    backgroundColor: 0x000000
+tsParticles.load({
+  id: "tsparticles",
+  options: {
+    particles: {
+      shape: {
+        type: "square", 
+      },
+    },
+    preset: "triangles",
+  },
 });
+
+
 // parallax on scroll
 window.addEventListener("scroll", () => {
   const scrollY = window.scrollY;
-  document.getElementById("vanta-bg").style.transform = `translateY(${scrollY * -0.2}px)`;
+  document.getElementById("tsparticles").style.transform = `translateY(${scrollY * -0.2}px)`;
 });
 
 
@@ -81,4 +81,58 @@ const charCount = document.getElementById("charCount");
 input.addEventListener("input", function() {
     const remainingChars = input.value.length;
     charCount.textContent = "Character limit: " + remainingChars + "/" + maxlength;
+});
+
+
+
+
+
+const askButton = document.querySelector('#chatform button');
+const chatPopup = document.getElementById('chatbox-wrapper');
+const closeBtn = document.getElementById('close-chat');
+const sendBtn = document.getElementById('send-chat');
+const inputBox = document.getElementById('chat-user-input');
+const chatMessages = document.getElementById('chat-messages');
+
+
+askButton.addEventListener("click", (e) => {
+  e.preventDefault(); 
+  document.body.style.overflow = 'hidden';
+  chatPopup.classList.add("visible");
+});
+
+closeBtn.addEventListener("click", () => {
+  document.body.style.overflow = '';
+  chatPopup.classList.remove("visible");
+});
+
+
+// Send message
+function sendMessage() {
+  const userText = inputBox.value.trim();
+  if (!userText) return;
+
+  // Add user message
+  const userBubble = document.createElement('div');
+  userBubble.className = 'message user';
+  userBubble.textContent = userText;
+  chatMessages.appendChild(userBubble);
+
+  // Simulate AI reply
+  const botBubble = document.createElement('div');
+  botBubble.className = 'message bot';
+  botBubble.textContent = `That's a great question about Parth!`;
+
+  setTimeout(() => {
+    chatMessages.appendChild(botBubble);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }, 500);
+
+  inputBox.value = '';
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+sendBtn.addEventListener('click', sendMessage);
+inputBox.addEventListener('keypress', e => {
+  if (e.key === 'Enter') sendMessage();
 });
