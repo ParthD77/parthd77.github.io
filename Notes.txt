@@ -19,3 +19,9 @@ maybe have the icons on the left close when you scroll
 
 
 should the background be static or scroll with the page? parallax or no?
+
+
+
+TODO:
+consistent font
+move links to navbar

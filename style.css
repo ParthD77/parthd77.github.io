@@ -1,3 +1,29 @@
+:root {
+  --bg: #0D1117;
+  --bg2: #161B22;
+  --text: #F5F5F5;
+  --subtext: #E6EDF3;
+  --accent: #00C2FF;
+  --accent2: #4F9BFF;
+  --radius: 8px;
+}
+
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #1f1633; 
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#a259ff, #f56eff); 
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(#8e44ad, #ff66cc);
+}
+
+
 html, body {
     scroll-behavior: liquid-smooth;
     margin: 0;
@@ -9,20 +35,20 @@ h1{
     font-size: clamp(2rem, 5vw, 5rem);
     font-optical-sizing: auto;
     font-style: normal;
-    color: white;
+    color: var(--text);
     text-align: center;
 }
 h2 {
     font-size: clamp(2rem, 5vw, 5rem);
     margin-bottom: 30px;
     text-align: center;
-    color: white;
+    color: var(--text);
 }
 h3 {
     font-size: clamp(1.5rem, 2.2vw, 3rem);
     margin-top: 0.2em;
     font-weight: 600;
-    color: white;
+    color: var(--text);
     margin-top: 0;
     margin-bottom: 0;
 }
@@ -30,7 +56,7 @@ p {
     font-size: clamp(1rem, 1.5vw, 2rem);
     margin-top: 0.2em;
     font-weight: 600;
-    color: white;
+    color: var(--text);
     margin-top: 0;
     margin-bottom: 0;
 }
@@ -40,8 +66,8 @@ p {
     position: sticky;
     top: 0;
     width: 100%;
-    height: 8em;
-    background-color: white;
+    height: 4em;
+    background-color: var(--bg);
     padding: 0;
     z-index: 1000;
     display: flex;
@@ -50,15 +76,21 @@ p {
     margin-bottom: 100px;
 }
 .navbar nav a {
-  margin-left: 20px;
+  margin-right: 20px;
   text-decoration: none;
-  color: black;
+  color: var(--text);
   font-weight: bold;
 }
 .navbar h2 {
-    color: black;
+    font-size: clamp(3rem, 1.5vw, 2rem);
+    background: linear-gradient(to top right, #ffffff, #8baaff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+.navbar nav a:hover {
+  color: var(--accent);
 }
 
 #tsparticles {
@@ -68,61 +100,14 @@ p {
     width: 100vw;
     height: 250vh;
     z-index: -1;
-    pointer-events: none;
+    pointer-events: auto;
 }
 
-#quickcontacts {
-    position: fixed;
-    top: 25%;
-    left: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 1;
-    width: 100px;
-    height: 100px;
-}
-#quickcontacts .imagelinkwrapper{
-    position: relative;
-    display: inline-block;
-    margin-bottom: 1em;
-}
-#quickcontacts img {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    height: 100%;
-}
-.slideoutpanel {
-    z-index: 1;
-    width: 400%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: white;
-    color: white;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease-in-out;
-    
-}
-.slideoutpanel a {
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 2em;
-}
+
 
 
 #heroflex {
-    color: white;
+    color: var(--text);
     display: flex;
     flex-direction: column;
     position: relative;
@@ -140,7 +125,7 @@ p {
     margin: 0;
 }
 #heroname {
-    color: red;
+    color: var(--accent2);
 }
 #wave-hand {
     width: 1.2em;
@@ -153,7 +138,7 @@ p {
     font-size: 2.8em;
 }
 #heropara {
-    color: red;
+    color: var(--accent);
 }
 
 
@@ -164,14 +149,12 @@ p {
     width: fit-content;
     z-index: 1;
     text-align: left;
-    margin: auto;
-    margin-top: 10vw;
+    margin: 10em auto;
     font-family: 'Montserrat', sans-serif;
     font-size: clamp(1rem, 1.5vw, 2rem);
     font-optical-sizing: auto;
     font-style: normal;
-    color: white;
-    max-width: 60vw;
+    color: #E6EDF3;
 }
 #chatbot h3 {
     margin: 0;
@@ -194,13 +177,15 @@ p {
     border: none;
     border-radius: 4px;
     margin-top: 0.5em;
+    background: var(--bg2);
+    color: var(--text);
 }
 #chatform button {
     position: absolute;
     top: 50%;
     transform: translateY(20%);
     right: 0.2em;
-    background-color: #f1c40f;
+    background: linear-gradient(to right, var(--accent), var(--accent2));
     border: none;
     padding: 0.4em 0.8em;
     border-radius: 4px;
@@ -208,13 +193,16 @@ p {
     cursor: pointer;
     font-size: 0.9em;
 }
+#chatbot button:hover {
+    transform: scale(1.05) translate(0%, 10%);
+}
 
 
 
 
 
 #about-me {
-  margin-top: 50vw;
+  margin-top: 40em;
 }
 #about-container {
   display: flex;
@@ -236,8 +224,9 @@ p {
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid #ccc;
+  border: 2px solid rgba(27, 89, 160, 0.911);
   margin-bottom: 15px;
+  box-shadow: 0 0 25px 15px rgba(27, 89, 160, 0.8);
 }
 #tags {
   display: flex;
@@ -271,7 +260,7 @@ p {
   text-align: center;
   position: relative;
   top: 8rem;
-  margin-top: 50vh;
+  margin-top: 40em;
 }
 #project-title {
   position: sticky;
@@ -281,13 +270,13 @@ p {
   position: sticky;
   height: 200px;
   top: 15rem;
-  background-color: #f8f9fa;
+  background-color: var(--bg2);
   border-radius: 10px;
   margin: 20px auto;
   max-width: 600px;
 }
 .project p {
-  color: #000;
+  color: var(--text);
 }
 .proj1 {
   top: 15rem;
@@ -309,7 +298,7 @@ p {
 #education {
   text-align: center;
   position: relative;
-  margin-top: 70vh;
+  margin-top: 52em;
   display: flex;
   flex-direction: row;
   flex-flow: wrap;
@@ -320,13 +309,11 @@ p {
 #education h1{
   flex: 0 0 100%; /* take full row */
   border-radius: 10px;
-  color: white;
 }
 #education p {
     font-size: clamp(1rem, 1vw, 1.5rem);
     margin-top: 0.2em;
     font-weight: 600;
-    color: white;
     margin-top: 0;
     margin-bottom: 0;
 }
@@ -335,17 +322,19 @@ p {
   background-color: rgb(64, 64, 126);
   border-radius: 15px;
   text-align: left;
+  padding: 20px;
 }
 .hs {
   width: 25vw;
   justify-content: flex-end; 
 }
 .mid-bar {
-  background-color: white;
+  background-color: var(--accent);
   height: 500px;
   width: 7px;
   border-radius: 4px;
   position: relative;
+  padding: 0;
 }
 #education .mid-bar img{
   position: absolute;
@@ -373,7 +362,7 @@ p {
   transform: translateX(-50%);
   width: 30px; 
   height: 10px;
-  background-color: white;
+  background-color: var(--accent);
   border-radius: 4px;
 }
 /* Arrow pointing down */
@@ -383,19 +372,25 @@ p {
   top: 99%;
   left: 50%;
   transform: translateX(-50%);
+  border-radius: 15px;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-top: 15px solid white;
+  border-top: 15px solid var(--accent);
 }
 
-
+#contact-anchor {
+  position: relative;
+  bottom: 0;
+  width: 0;
+  height: 0; /* Small height to avoid scroll issues */
+}
 #contact {
-  background-color: #0d0b23;
-  color: white;
-  padding: 4rem 2rem;
+  background-color: var(--bg);
+  color: var(--text);
+  padding: 3rem 2rem 2rem 2rem;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
-  margin-top: 70vh;
+  margin-top: 40em;
   display: flex;
   flex-direction: column;
 }
@@ -407,10 +402,10 @@ p {
   width: 40vw;
   height: 20em;
   margin: auto;
-  background-color: #1a1433;
+  background-color: var(--bg2);
   border-radius: 15px;
   padding: 4rem;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 30px rgba(0, 194, 255, 0.15);
 }
 .input-group {
   margin-bottom: 1.5rem;
@@ -420,13 +415,14 @@ p {
   display: block;
   font-weight: bold;
   margin-bottom: 0.5rem;
+  color: var(--text);
 }
 .input-group input,
 .input-group textarea {
   width: 100%;
   padding: 1rem;
-  background: #241b3a;
-  color: white;
+  background: #1F2233;
+  color: var(--text);
   border: none;
   border-radius: 8px;
   resize: none;
@@ -434,16 +430,17 @@ p {
 }
 .input-group input::placeholder,
 .input-group textarea::placeholder {
-  color: #bbb;
+  color: rgba(245,245,245,0.5);
 }
 button {
-  background: linear-gradient(to right, #a259ff, #f56eff);
+  background: linear-gradient(to right, var(--accent), var(--accent2));
   color: white;
   padding: 1rem 2rem;
   border-radius: 25px;
   font-size: 1rem;
   cursor: pointer;
   transition: transform 0.2s ease;
+  border: none;
 }
 button:hover {
   transform: scale(1.05);
@@ -462,11 +459,12 @@ button:hover {
 
 
 
+
 #chatbox-wrapper {
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: 8em;
+  top: 4em;
   left: 0;
   width: 100vw;
   height: 100vh;
@@ -500,7 +498,7 @@ button:hover {
   flex: 1;
   padding: 1em;
   overflow-y: auto;
-  height: calc(100vh - 18em);
+  height: calc(100vh - 11em);
   background: #2c2047;
   color: white;
   display: flex;
@@ -530,7 +528,7 @@ button:hover {
 #chat-input-area {
   word-wrap: break-word;
   position: absolute;
-  bottom: 8em;
+  bottom: 4em;
   height: 3em;
   width: 100vw;
   display: flex;

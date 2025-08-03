@@ -1,0 +1,42 @@
+{
+  "preset": "triangles",
+  "particles": {
+    "color": { "value": "#00C2FF" },       
+    "links": {
+      "color": "#00C2FF"                    
+    }
+  },
+  "background": {
+    "color": {
+      "value": "#0D1117"
+    }
+  },
+  "interactivity": {
+    "detectsOn": "window",
+    "events": {
+      "onHover": {
+        "enable": true,
+        "mode": "grab"
+      },
+      "onClick": {
+        "enable": true,
+        "mode": "attract"
+      },
+      "resize": true
+    },
+    "modes": {
+      "grab": {
+        "distance": 200,
+        "links": {
+          "opacity": 0.7
+        }
+      },
+      "attract": {
+        "distance": 300,
+        "duration": 0.4,
+        "speed": 1
+      }
+    }
+  },
+  "detectRetina": true
+}

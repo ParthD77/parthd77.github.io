@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
 
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@latest/tsparticles.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-triangles@latest/tsparticles.preset.triangles.bundle.min.js"></script>
 
 
@@ -21,36 +22,13 @@
     <nav class="navbar">
       <h2>Parth Dhroovji</h2>
       <nav>
-          <a href="#hero">Home</a>
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#education">Education</a>
-          <a href="#contact">Contact</a>
+        <a href="#" data-scroll-to="heroflex">Home</a>
+        <a href="#" data-scroll-to="about-me">About</a>
+        <a href="#" data-scroll-to="projects">Projects</a>
+        <a href="#" data-scroll-to="education">Education</a>
+        <a href="#" data-scroll-to="contact-anchor">Contact</a>
       </nav>
     </nav>
-
-    <section id="quickcontacts">
-      <div class="imagelinkwrapper">
-        <img src="assets/github.png" alt="GitHub">
-        <div class="slideoutpanel">
-          <a href="https://github.com/Parthd77" target="_blank">Github</a>
-        </div>
-      </div>
-        
-        <div class="imagelinkwrapper">
-        <img src="assets/insta.png" alt="Instagram">
-        <div class="slideoutpanel">
-          <a href="https://www.instagram.com/Parthd77" target="_blank">Instagram</a>
-        </div>
-      </div>
-
-        <div class="imagelinkwrapper">
-        <img src="assets/resume.png" alt="Resume">
-        <div class="slideoutpanel">
-          <a href="https://github.com/Parthd77" target="_blank">Github</a>
-        </div>
-      </div>
-    </section>
 
     <section id="heroflex">
       <div id="hello_image">
@@ -67,11 +45,11 @@
     </section>
 
     <section id="chatbot">
-      <h3>Ask my personal AI assistant anything about me here.</h3>
+      <h3>Ask my personal AI companion anything about me here.</h3>
       <p id="charCount">Character limit: 200</p>
       <form id="chatform">
         <input id="chatinput" type="text" placeholder="Type your question here..." maxlength="200">
-        <button type="submit">Ask</button>
+        <button id="submit">Ask</button>
       </form>
     </section>
 
@@ -79,7 +57,7 @@
       <h1>About Me</h1>
       <div id="about-container">
         <div id="about-left">
-          <img src="assets/asc1.png" alt="Parth Dhroovji" id="pfp">
+          <img src="assets/pfp.png" alt="Parth Dhroovji" id="pfp">
           <div id="tags">
             <span class="tag tag-blue">Developer</span>
             <span class="tag tag-green">AI Enthusiast</span>
@@ -138,7 +116,7 @@
       </div>
     </section>
 
-
+    
     <section id="contact">
       <h2>Contact</h2>
       <div class="contact-container">
@@ -164,6 +142,7 @@
         </form>
       </div>
 
+
       <div id="contact-links">
         <h3>Get in Touch Another way</h3>
         <a href="https://github.com/Parthd77" target="_blank">
@@ -173,6 +152,8 @@
           <img src="assets/insta.png" alt="Instagram">
         </a>
       </div>
+      
+      <div id="contact-anchor"></div>
     </section>
 
     <section id="chatbox-wrapper">

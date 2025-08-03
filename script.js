@@ -1,14 +1,4 @@
-tsParticles.load({
-  id: "tsparticles",
-  options: {
-    particles: {
-      shape: {
-        type: "square", 
-      },
-    },
-    preset: "triangles",
-  },
-});
+tsParticles.loadJSON("tsparticles", "assets/particles.json");
 
 
 // parallax on scroll
@@ -18,6 +8,23 @@ window.addEventListener("scroll", () => {
 });
 
 
+/// Smooth scroll for navbar links and no http link issue
+document.querySelectorAll('.navbar nav a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const targetId = link.dataset.scrollTo;
+    const target = document.getElementById(targetId);
+    if (!target) return;
+
+    const navHeight = document.querySelector('.navbar').offsetHeight;
+    const offset = target.getBoundingClientRect().top + window.scrollY - navHeight - 8;
+
+    window.scrollTo({ top: offset, behavior: 'smooth' });
+  });
+});
+
+
+/// i am a ... typwriter effect
 var i = 0;
 var txt = ["computer science major.", "AI enthusiast.", "software developer.", "team leader.", "passionate learner."];
 var speed = 100;
@@ -47,33 +54,8 @@ function resetTypeWriter() {
 iAmTypeWriter();
 
 
-function togglePanel(panel) {
-    var isOpen = panel.style.transform === 'scaleX(1)';
-    if (isOpen) {
-        panel.style.transform = 'scaleX(0)';
-    } else {
-        panel.style.transform = 'scaleX(1)';
-    }
-}
 
-function setupAllToggleButtons() {
-    var wrappers = document.querySelectorAll('.imagelinkwrapper');
-    for (var i = 0; i < wrappers.length; i++) {
-        var img = wrappers[i].querySelector('img');
-        var panel = wrappers[i].querySelector('.slideoutpanel');
-        if (img && panel) {
-            img.addEventListener('click', (function(panelRef) {
-                return function() {
-                    togglePanel(panelRef);
-                };
-            })(panel));
-        }
-    }
-}
-
-window.addEventListener('load', setupAllToggleButtons);
-
-
+/// Character count for chat input on base screen
 const input = document.getElementById("chatinput");
 const maxlength = input.getAttribute("maxlength");
 const charCount = document.getElementById("charCount");
@@ -84,9 +66,7 @@ input.addEventListener("input", function() {
 });
 
 
-
-
-
+/// ai chatbot screen
 const askButton = document.querySelector('#chatform button');
 const chatPopup = document.getElementById('chatbox-wrapper');
 const closeBtn = document.getElementById('close-chat');
