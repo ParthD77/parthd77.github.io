@@ -1,5 +1,0 @@
-To local host:
-open cmd
-cd to project folder: C:\Code\websites\portfolio
-enter: python -m http.server 8000
-Done
