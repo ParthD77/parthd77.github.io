@@ -75,16 +75,20 @@ const inputBox = document.getElementById('chat-user-input');
 const chatMessages = document.getElementById('chat-messages');
 
 
-askButton.addEventListener("click", (e) => {
-  e.preventDefault(); 
-  document.body.style.overflow = 'hidden';
+function handleChatAskButton(e) {
+  e.preventDefault();  
+  document.body.style.overflow = 'hidden'; // disable page scrolling
   chatPopup.classList.add("visible");
-});
+}
+askButton.addEventListener("click", handleChatAskButton);
 
-closeBtn.addEventListener("click", () => {
+function handleChatCloseBtn(e) {
+  e.preventDefault();
   document.body.style.overflow = '';
   chatPopup.classList.remove("visible");
-});
+}
+closeBtn.addEventListener("click", handleChatCloseBtn)
+
 
 
 // Send message
@@ -116,3 +120,12 @@ sendBtn.addEventListener('click', sendMessage);
 inputBox.addEventListener('keypress', e => {
   if (e.key === 'Enter') sendMessage();
 });
+
+
+
+
+
+// BACKEND
+async function ask_ai_api() {
+  const user_question = document.getElementsByClassName(ai-quest-input)
+}
