@@ -116,6 +116,9 @@ function sendMessage() {
   userBubble.textContent = userText;
   chatMessages.appendChild(userBubble);
 
+  // fetch from AI backend
+  const response = ask_ai_api(userText);
+
   // Simulate AI reply
   const botBubble = document.createElement('div');
   botBubble.className = 'message bot';
@@ -141,6 +144,27 @@ inputBox.addEventListener('keypress', e => {
 
 
 // BACKEND
-async function ask_ai_api() {
-  const user_question = document.getElementsByClassName(ai-quest-input)
+async function ask_ai_api(userInput) {
+
+
+  // fetch from AI backend
+  try{
+    const response  = await fetch("http://localhost:5000/chat",  {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body:  JSON.stringify({ question: userInput })
+    });
+
+    if (!response.ok) {
+      const errText = await response.text(); 
+      throw new Error(`Server error ${response.status}: ${errText}`);
+    }
+
+    const data = await response.json();
+    return data.reply
+  } 
+  catch (error) {
+    console.error("Error fetching AI response:", error);
+    return "⚠️ Something went wrong please try again later."; 
+  }
 }
