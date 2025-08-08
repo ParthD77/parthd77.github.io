@@ -58,12 +58,14 @@ iAmTypeWriter();
 /// Character count for chat input on base screen
 const input = document.getElementById("chatinput");
 const maxlength = input.getAttribute("maxlength");
-const charCount = document.getElementById("charCount");
+const charCount1 = document.getElementById("charCount1");
 
 input.addEventListener("input", function() {
     const remainingChars = input.value.length;
-    charCount.textContent = "Character limit: " + remainingChars + "/" + maxlength;
+    charCount1.textContent = "Character limit: " + remainingChars + "/" + maxlength;
 });
+
+
 
 
 /// ai chatbot screen
@@ -75,10 +77,20 @@ const inputBox = document.getElementById('chat-user-input');
 const chatMessages = document.getElementById('chat-messages');
 
 
+/// Character count for chat input on ai chat screen
+const charCount2 = document.getElementById("charCount2");
+
+inputBox.addEventListener("input", function() {
+    const remainingChars = inputBox.value.length;
+    charCount2.textContent = "Character limit: " + remainingChars + "/" + maxlength;
+});
+
 function handleChatAskButton(e) {
   e.preventDefault();  
   document.body.style.overflow = 'hidden'; // disable page scrolling
   chatPopup.classList.add("visible");
+  inputBox.value = input.value;
+  inputBox.dispatchEvent(new Event('input'));
 }
 askButton.addEventListener("click", handleChatAskButton);
 
@@ -86,6 +98,8 @@ function handleChatCloseBtn(e) {
   e.preventDefault();
   document.body.style.overflow = '';
   chatPopup.classList.remove("visible");
+  input.value = inputBox.value;
+  input.dispatchEvent(new Event('input'));
 }
 closeBtn.addEventListener("click", handleChatCloseBtn)
 
@@ -95,7 +109,7 @@ closeBtn.addEventListener("click", handleChatCloseBtn)
 function sendMessage() {
   const userText = inputBox.value.trim();
   if (!userText) return;
-
+  
   // Add user message
   const userBubble = document.createElement('div');
   userBubble.className = 'message user';
@@ -114,6 +128,7 @@ function sendMessage() {
 
   inputBox.value = '';
   chatMessages.scrollTop = chatMessages.scrollHeight;
+  inputBox.dispatchEvent(new Event('input'));
 }
 
 sendBtn.addEventListener('click', sendMessage);

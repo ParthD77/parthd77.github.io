@@ -554,6 +554,15 @@ button:hover {
   font-size: 1.2rem;
   cursor: pointer;
 }
+#chatbox-wrapper #charCount2 {
+    color: #c9c9c9;
+    font-weight: 100;
+    position: absolute;
+    margin: 0;
+    font-size: 1em;
+    bottom: 7em;
+    padding: 0 0 0.1em 0.2em;
+}
 
 
 
