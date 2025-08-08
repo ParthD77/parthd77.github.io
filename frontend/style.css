@@ -101,6 +101,7 @@ p {
     height: 250vh;
     z-index: -1;
     pointer-events: auto;
+    will-change: transform;
 }
 
 
