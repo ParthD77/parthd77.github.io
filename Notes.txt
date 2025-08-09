@@ -1,15 +1,7 @@
-Layout:
 
-HERO section
-AI bot
-About Me
-Projects
-Education
-Contact
 
 
 scrolling aniamtiosn where boxes and divs move into place a little
-ai gpt wrapper tahts know all abouit me
 3d model
 
 
@@ -17,7 +9,7 @@ ai gpt wrapper tahts know all abouit me
 
 
 TODO:
-consistent font
+prevent chat spam
 move links to navbar
 background glitch when scrolling
 prevent others from accesing my links and api

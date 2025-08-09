@@ -25,9 +25,10 @@
 
 
 html, body {
-    scroll-behavior: liquid-smooth;
+    scroll-behavior: smooth;
     margin: 0;
     padding: 0;
+    font-family: 'Montserrat', sans-serif;
 }
 
 h1{

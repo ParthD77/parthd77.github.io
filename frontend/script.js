@@ -111,7 +111,7 @@ async function sendMessage() {
   const userText = inputBox.value.trim();
   if (!userText) return;
 
-  
+  inputBox.value = "";
   sendBtn.disabled = true;
   inputBox.disabled = true;
 
@@ -122,13 +122,20 @@ async function sendMessage() {
   chatMessages.appendChild(userBubble);
 
   // fetch from AI backend
-  const response = await ask_ai_api(userText);
   const botBubble = document.createElement('div');
   botBubble.className = 'message bot';
+  botBubble.textContent = "Thinking...";
+
+  chatMessages.appendChild(botBubble);
+    requestAnimationFrame(() => {
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    });
+
+
+  const response = await ask_ai_api(userText);
   botBubble.textContent = response;
 
   setTimeout(() => {
-    chatMessages.appendChild(botBubble);
     requestAnimationFrame(() => {
     chatMessages.scrollTop = chatMessages.scrollHeight;
     });
@@ -141,7 +148,7 @@ async function sendMessage() {
 }
 
 sendBtn.addEventListener('click', sendMessage);
-inputBox.addEventListener('keypress', e => {
+inputBox.addEventListener('keydown', e => {
   if (e.key === 'Enter') sendMessage();
 });
 

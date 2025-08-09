@@ -6,7 +6,12 @@ from flask_cors import CORS
 
 
 app = Flask(__name__)
-CORS(app)
+allowed = [
+  "https://your-domain.com",
+  "https://www.your-domain.com",
+  "http://localhost:5500"  # dev only
+]
+CORS(app, resources={ r"/chat": {"origins": allowed} })
 
 @app.route('/chat', methods=['POST'])
 def handle_request():
