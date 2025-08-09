@@ -20,3 +20,4 @@ TODO:
 consistent font
 move links to navbar
 background glitch when scrolling
+prevent others from accesing my links and api

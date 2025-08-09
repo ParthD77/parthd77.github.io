@@ -91,6 +91,7 @@ function handleChatAskButton(e) {
   chatPopup.classList.add("visible");
   inputBox.value = input.value;
   inputBox.dispatchEvent(new Event('input'));
+  inputBox.focus();
 }
 askButton.addEventListener("click", handleChatAskButton);
 
@@ -106,10 +107,14 @@ closeBtn.addEventListener("click", handleChatCloseBtn)
 
 
 // Send message
-function sendMessage() {
+async function sendMessage() {
   const userText = inputBox.value.trim();
   if (!userText) return;
+
   
+  sendBtn.disabled = true;
+  inputBox.disabled = true;
+
   // Add user message
   const userBubble = document.createElement('div');
   userBubble.className = 'message user';
@@ -117,21 +122,22 @@ function sendMessage() {
   chatMessages.appendChild(userBubble);
 
   // fetch from AI backend
-  const response = ask_ai_api(userText);
-
-  // Simulate AI reply
+  const response = await ask_ai_api(userText);
   const botBubble = document.createElement('div');
   botBubble.className = 'message bot';
-  botBubble.textContent = `That's a great question about Parth!`;
+  botBubble.textContent = response;
 
   setTimeout(() => {
     chatMessages.appendChild(botBubble);
+    requestAnimationFrame(() => {
     chatMessages.scrollTop = chatMessages.scrollHeight;
+    });
   }, 500);
 
-  inputBox.value = '';
   chatMessages.scrollTop = chatMessages.scrollHeight;
   inputBox.dispatchEvent(new Event('input'));
+  sendBtn.disabled = false;
+  inputBox.disabled = false;
 }
 
 sendBtn.addEventListener('click', sendMessage);
@@ -149,19 +155,18 @@ async function ask_ai_api(userInput) {
 
   // fetch from AI backend
   try{
-    const response  = await fetch("http://localhost:5000/chat",  {
+    const response  = await fetch("http://127.0.0.1:5000/chat",  {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body:  JSON.stringify({ question: userInput })
     });
-
     if (!response.ok) {
       const errText = await response.text(); 
       throw new Error(`Server error ${response.status}: ${errText}`);
     }
 
-    const data = await response.json();
-    return data.reply
+    const data = await response.text();
+    return data;
   } 
   catch (error) {
     console.error("Error fetching AI response:", error);

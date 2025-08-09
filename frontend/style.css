@@ -474,7 +474,6 @@ button:hover {
   transform: scale(0);
   transform-origin: bottom center;
   transition: transform 0.3s ease-in-out;
-  overflow: hidden;
 }
 #chatbox-wrapper.visible {
   transform: scale(1);
@@ -499,7 +498,7 @@ button:hover {
   flex: 1;
   padding: 1em;
   overflow-y: auto;
-  height: calc(100vh - 11em);
+  height: calc(100vh - 14em);
   background: #2c2047;
   color: white;
   display: flex;

@@ -1,0 +1,36 @@
+Name: Parth Dhroovji
+Birth date: Oct 21, 2006
+Interests: Ai, coding, rock climbing, motorcycles, sports, volleyball, tennis, gaming
+Avalibility: Eastern Standard Timezone, always open to chat
+Status: Student, open to work
+Skills: Python, Java, Ai, wbedevlopment
+Contact info: Instagram: Parthd77, Github: ParthD77, email: parth.dhroovji@gmail.com, Phonen number: 647-868-9476
+Education:
+3.94 GPA at the University Of Toronto studying a Computer Science Major, Math and Statistics minor class of 2027
+
+Projects:
+Personal website: Created own website with front and backend.
+NEAT AI: Developed and implemented an AI algorithm (NEAT) from scratch in python that can play basic 
+games and solve functions such as the XOR function and learn to beat flappy bird. Provde more info
+about the NEAT algorithm if needed.
+Reels Creator: A script that generates trending “brainrot” style stories and videos using AI and 
+edits everything into a postable video
+Music-Mixer: Creator of a sound mixing application 
+Retro-Space Shooter: Illustrated and designed an arcade-style space shooter game [Java and Python]
+Paypal clone [Java]
+Pong game [Java]
+
+Experience:
+Volunteer [Total: 130+ hours]
+Provided over 40 hours of tutoring support to juniors focusing on STEM-related courses
+Contributed over 50 hours of service at local food banks, temples, and garbage clean-ups
+Crafted handwritten notes to support the elderly in the community during times of need
+
+Extracurriculars:
+Provincial DECA qualifier
+Awards:
+Two-time Science Olympic Champion
+DECA regionals top 10
+
+Others:
+Multilingual: Able to fluently understand and speak Gujarati & Hindi
