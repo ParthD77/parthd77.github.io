@@ -180,3 +180,84 @@ async function ask_ai_api(userInput) {
     return "⚠️ Something went wrong please try again later."; 
   }
 }
+
+
+
+
+
+// Add to your script.js (extend what you already have)
+const modal = document.getElementById('project-modal');
+const modalCard = modal.querySelector('.modal-card');
+const modalTitle = document.getElementById('modal-title');
+const modalBody  = document.getElementById('modal-body');
+const modalImage = document.getElementById('modal-image');
+const modalRepo  = document.getElementById('modal-repo');
+const closeSumBtn   = modal.querySelector('.modal-close');
+const backdrop   = modal.querySelector('.modal-backdrop');
+
+function setModalOriginFrom(el){
+  const r = el.getBoundingClientRect();
+  const cx = r.left + r.width / 2;
+  const cy = r.top  + r.height / 2;
+  modalCard.style.setProperty('--start-x', cx + 'px');
+  modalCard.style.setProperty('--start-y', cy + 'px');
+}
+
+function openProjectModal(card, originEl){
+  const title = card.dataset.title || card.querySelector('h3')?.textContent || 'Project';
+  const desc  = card.dataset.desc  || 'More details coming soon.';
+  const repo  = card.dataset.repo  || ''; // e.g., https://github.com/ParthD77/rot_vid_gen
+  const img   = card.dataset.modalimg || card.querySelector('.project-thumb img')?.src || '';
+
+  modalTitle.textContent = title;
+  modalBody.innerHTML = `<p>${desc}</p>`;
+
+  if (img) {
+    modalImage.src = img;
+    modalImage.alt = `${title} preview`;
+    modalImage.parentElement.style.display = '';
+  } else {
+    modalImage.src = '';
+    modalImage.parentElement.style.display = 'none';
+  }
+
+  if (repo) {
+    modalRepo.href = repo;
+    modalRepo.style.display = 'inline-flex';
+    modalRepo.setAttribute('aria-label', `Open ${title} on GitHub`);
+  } else {
+    modalRepo.removeAttribute('href');
+    modalRepo.style.display = 'none';
+  }
+
+  setModalOriginFrom(originEl || card.querySelector('.project-cta') || card);
+  modal.classList.remove('closing');
+  modal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProjectModal(){
+  modal.classList.add('closing');
+  const onEnd = (e)=>{
+    if (e.propertyName !== 'transform') return;
+    modal.classList.remove('show','open','closing');
+    document.body.style.overflow = '';
+    modalCard.removeEventListener('transitionend', onEnd);
+  };
+  modalCard.addEventListener('transitionend', onEnd);
+}
+
+// Open from card buttons
+document.querySelectorAll('.project-cta').forEach(btn=>{
+  btn.addEventListener('click', e=>{
+    const card = e.currentTarget.closest('.project');
+    openProjectModal(card, e.currentTarget);
+  });
+});
+closeSumBtn.addEventListener('click', closeProjectModal);
+backdrop.addEventListener('click', closeProjectModal);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && (modal.classList.contains('show') || modal.classList.contains('open'))) {
+    closeProjectModal();
+  }
+});

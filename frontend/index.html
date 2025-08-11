@@ -78,25 +78,99 @@
 
     
     <section id="projects">
-      <div id="project-title">
-        <h1>Projects</h1>
+      <div id="project-title"><h1>Projects</h1></div>
+
+      <div class="project proj1"
+          data-title="Personal full-stack portfolio with my AI Companion"
+          data-desc="Filler: A deeper dive into the architecture, routing strategy, prompt-layer, safety filters, and how the companion ingests a curated profile for deterministic answers. Include deployment notes, rate limits, and caching strategy here."
+          data-repo="https://github.com/ParthD77/rot_vid_gen">
+        <div class="project-content">
+          <h3>Personal full-stack portfolio with my AI Companion</h3>
+          <p>A feature-rich portfolio with smooth animations and an integrated AI companion that answers questions in real-time via a lightweight API layer.</p>
+          <button class="project-cta" data-open>Learn More →</button>
+        </div>
+        <div class="project-thumb">
+          <img src="assets/projects/ai-companion.jpg" alt="AI companion preview">
+        </div>
       </div>
-      <div class="project proj1">
-        <p>Text</p>
+
+      <div class="project proj2"
+          data-title="Reddit-Style Video Auto-Generator"
+          data-desc="Filler: End-to-end pipeline details, batching, TTS/Whisper tuning, subtitle styling, render times, and fault tolerance. Add CLI flags, config file format, and export presets."
+          data-repo="https://github.com/ParthD77/rot_vid_gen"
+          data-modalimg="assets/projects/rot_vid_gen.jpg">
+        <div class="project-content">
+          <h3>Reddit-Style Video Auto-Generator</h3>
+          <p>Transforms scripts + background clips into edited vertical videos with live subtitles and AI voiceover. Automates title card, trimming, and export.</p>
+          <button class="project-cta" data-open>Learn More →</button>
+        </div>
+        <div class="project-thumb">
+          <img src="assets/projects/rot_vid_gen.jpg" alt="Video generator preview">
+        </div>
       </div>
-      <div class="project proj2">
-        <p>Text</p>
+
+      <div class="project proj3"
+          data-title="ML-using-NEAT – Flappy Bird Neuro-Evolution"
+          data-desc="Filler: Describe genome encoding, mutation rates, speciation, fitness shaping, stagnation handling, and visualization plans. Include pitfalls and results.">
+        <div class="project-content">
+          <h3>ML-using-NEAT – Flappy Bird Neuro-Evolution</h3>
+          <p>Agents evolve via NEAT to survive longer and learn progression. A modifiable playground to plug evolutionary control into different tasks.</p>
+          <button class="project-cta" data-open>Learn More →</button>
+        </div>
+        <div class="project-thumb">
+          <img src="assets/projects/neat-bird.jpg" alt="NEAT flappy preview">
+        </div>
       </div>
-      <div class="project proj3">
-        <p>Text</p>
+
+      <div class="project proj4"
+          data-title="SHMUP – Retro Space Shooter"
+          data-desc="Filler: Game loop, sprite batching, collision strategy (AABB), enemy patterns, and future additions like power-ups, bosses, and shaders.">
+        <div class="project-content">
+          <h3>SHMUP – Retro Space Shooter</h3>
+          <p>Fast arcade shooter showcasing movement, enemy waves, collisions, and scoring. Compact codebase to demonstrate core game dev concepts.</p>
+          <button class="project-cta" data-open>Learn More →</button>
+        </div>
+        <div class="project-thumb">
+          <img src="assets/projects/shmup.jpg" alt="SHMUP preview">
+        </div>
       </div>
-        <div class="project proj3">
-        <p>Text</p>
-      </div>
-        <div class="project proj3">
-        <p>Text</p>
+
+      <div class="project proj5"
+          data-title="Music Mixer – Java Beat Maker"
+          data-desc="Filler: Sequencer design, timing/latency, sample management, and UI layout. Roadmap: effects rack, export to WAV/MP3, and MIDI input.">
+        <div class="project-content">
+          <h3>Music Mixer – Java Beat Maker</h3>
+          <p>Pattern-based composition and loop tracks for quick idea capture. Built to explore audio sequencing and desktop UI in Java.</p>
+          <button class="project-cta" data-open>Learn More →</button>
+        </div>
+        <div class="project-thumb">
+          <img src="assets/projects/mixer.jpg" alt="Music mixer preview">
+        </div>
       </div>
     </section>
+
+    <!-- ===== Modal ===== -->
+    <div id="project-modal" class="modal">
+      <div class="modal-backdrop"></div>
+      <div class="modal-card">
+        <button class="modal-close" aria-label="Close">×</button>
+        <h3 id="modal-title">Title</h3>
+
+        <div class="modal-media">
+          <img id="modal-image" alt="">
+        </div>
+
+        <div id="modal-body">
+          <p>Long-form description goes here. Add sections, images, links, etc.</p>
+        </div>
+
+        <div class="modal-actions">
+          <a id="modal-repo" class="btn-repo" href="#" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+      </div>
+    </div>
+
+
 
 
     <section id="education">

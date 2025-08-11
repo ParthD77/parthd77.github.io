@@ -13,3 +13,9 @@ prevent chat spam
 move links to navbar
 background glitch when scrolling
 prevent others from accesing my links and api
+
+
+
+each project needs to have data-repo and data-modalimg added.
+fix the title of the project being covered.
+redo a short and long summary
