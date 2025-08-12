@@ -19,3 +19,5 @@ prevent others from accesing my links and api
 each project needs to have data-repo and data-modalimg added.
 fix the title of the project being covered.
 redo a short and long summary
+
+FIX TITLE OF PROJECT NOT DSIAPLYING
