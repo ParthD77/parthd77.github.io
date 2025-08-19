@@ -274,6 +274,7 @@ p {
   top: 15rem;
   margin: 3.5em auto;
   width: min(92%, clamp(340px, 60vw, 980px));
+  height: 20em;
   padding: clamp(16px, 2vw, 26px);
   border-radius: 16px;
   background: linear-gradient(180deg, rgba(22,27,34,.88), rgba(13,17,23,.9));
@@ -287,7 +288,7 @@ p {
   /* two-column card: text left, image right */
   display: grid;
   grid-template-columns: 1.3fr .9fr;
-  align-items: center;
+  align-items: start;
   gap: clamp(14px, 2vw, 22px);
 }
 .project h3{
@@ -295,7 +296,9 @@ p {
   font-size: clamp(1.1rem, 1.7vw, 1.6rem);
   font-weight: 800;
   margin: 0 0 .5rem 0;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis;
 }
 .project h3::after{
   content:""; display:block; height:2px; margin-top:.55rem;
@@ -317,13 +320,16 @@ p {
   padding: .6rem 1rem; font-weight: 700; cursor: pointer;
   transition: transform .15s ease;
 }
-.project-cta:hover{ transform: translateY(-1px); }
+.project-cta:hover{ 
+  transform: translateY(-1px); 
+}
 /* right-side thumbnail */
-.project-thumb{ width:100%; height:100%; }
+.project-thumb{ 
+  width:100%; 
+  height:100%; 
+}
 .project-thumb img{
   width: 100%;
-  height: auto;
-  object-fit: cover;
   border-radius: 12px;
   display:block;
   box-shadow: 0 8px 30px rgba(0,0,0,.35);
@@ -336,22 +342,12 @@ p {
     radial-gradient(700px 300px at 110% 120%, rgba(0,194,255,.14), transparent 60%);
 }
 /* staggered sticky offsets */
-.proj1{ top:15rem; } 
-.proj2{ top:18rem; } 
-.proj3{ top:21rem; } 
-.proj4{ top:24rem; } 
-.proj5{ top:27rem; }
+.proj1{ top:15em; } 
+.proj2{ top:19em; } 
+.proj3{ top:23em; } 
+.proj4{ top:27em; } 
+.proj5{ top:31em; }
 
-/* stack on mobile */
-@media (max-width: 820px){
-  .project{
-    grid-template-columns: 1fr;
-  }
-  .project-thumb img{
-    height: clamp(140px, 38vw, 260px);
-  }
-  .proj1{ top:12rem; } .proj2{ top:14rem; } .proj3{ top:16rem; } .proj4{ top:18rem; } .proj5{ top:20rem; }
-}
 
 /* ===== Modal ===== */
 /* Modal grows out of the clicked button and shrinks back on close */
