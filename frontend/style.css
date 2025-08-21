@@ -76,14 +76,15 @@ p {
     align-items: center;
     margin-bottom: 100px;
 }
-.navbar nav a {
+.navbar a {
   margin-right: 20px;
   text-decoration: none;
   color: var(--text);
   font-weight: bold;
+  font-size: clamp(0.5em, 2vw, 1em);
 }
 .navbar h2 {
-    font-size: clamp(3rem, 1.5vw, 2rem);
+    font-size: clamp(1em, 4vw, 3em);
     background: linear-gradient(to top right, #ffffff, #8baaff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -274,7 +275,6 @@ p {
   top: 15rem;
   margin: 3.5em auto;
   width: min(92%, clamp(340px, 60vw, 980px));
-  height: 20em;
   padding: clamp(16px, 2vw, 26px);
   border-radius: 16px;
   background: linear-gradient(180deg, rgba(22,27,34,.88), rgba(13,17,23,.9));
@@ -282,8 +282,7 @@ p {
   box-shadow: 0 18px 50px rgba(0,0,0,.35);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  overflow: hidden;
-  isolation: isolate;
+  overflow: auto;
 
   /* two-column card: text left, image right */
   display: grid;
@@ -330,6 +329,7 @@ p {
 }
 .project-thumb img{
   width: 100%;
+  min-width: 8em;
   border-radius: 12px;
   display:block;
   box-shadow: 0 8px 30px rgba(0,0,0,.35);
@@ -342,11 +342,11 @@ p {
     radial-gradient(700px 300px at 110% 120%, rgba(0,194,255,.14), transparent 60%);
 }
 /* staggered sticky offsets */
-.proj1{ top:15em; } 
-.proj2{ top:19em; } 
-.proj3{ top:23em; } 
-.proj4{ top:27em; } 
-.proj5{ top:31em; }
+.proj1{ top:15em; background-color: #00ff95;} 
+.proj2{ top:19em; background-color: #0084ff;} 
+.proj3{ top:23em; background-color: #ea00ff;} 
+.proj4{ top:27em; background-color: #ff0080;} 
+.proj5{ top:31em; background-color: #ff0000;}
 
 
 /* ===== Modal ===== */
@@ -440,12 +440,16 @@ p {
   flex: 0 0 100%; /* take full row */
   border-radius: 10px;
 }
+#education h3 {
+   font-size: 2rem;
+}
 #education p {
-    font-size: clamp(1rem, 1vw, 1.5rem);
+    font-size: 1em;
     margin-top: 0.2em;
     font-weight: 600;
     margin-top: 0;
     margin-bottom: 0;
+    color: rgb(211, 211, 211);
 }
 .side {
   margin: 40px;
