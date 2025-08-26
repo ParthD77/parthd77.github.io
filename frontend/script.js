@@ -261,3 +261,200 @@ document.addEventListener('keydown', (e) => {
     closeProjectModal();
   }
 });
+
+
+
+
+
+
+// grab elements
+var contactSheet = document.getElementById('contact-sheet');
+if (contactSheet) {
+  var contactBackdrop = contactSheet.querySelector('.contact-sheet-backdrop');
+  var contactIcon     = document.getElementById('contact-sheet-icon');
+  var contactTitle    = document.getElementById('contact-sheet-title');
+  var contactLink     = document.getElementById('contact-sheet-link');
+  var contactCopyBtn  = document.getElementById('contact-sheet-copy');
+  var contactOpenBtn  = document.getElementById('contact-sheet-open');
+  var contactCloseBtn = contactSheet.querySelector('.contact-sheet-close');
+
+  // extract a clean identifier (username, email, phone) from href
+  function contactExtractId(href) {
+    try {
+      // mailto
+      if (href.indexOf('mailto:') === 0) {
+        return href.substring(7); // remove 'mailto:'
+      }
+      // tel
+      if (href.indexOf('tel:') === 0) {
+        return href.substring(4); // remove 'tel:'
+      }
+
+      // parse URL
+      var u = new URL(href);
+
+      // hostname lowercased
+      var host = '';
+      if (u.hostname) {
+        host = u.hostname.toLowerCase();
+      }
+
+      // pathname without leading slashes
+      var path = '';
+      if (u.pathname) {
+        path = u.pathname;
+      }
+      while (path.length > 0 && path.charAt(0) === '/') {
+        path = path.substring(1);
+      }
+
+      // first path segment
+      var first = '';
+      var parts = path.split('/');
+      if (parts.length > 0) {
+        first = parts[0];
+      }
+
+      // provider specific extraction
+      if (host.indexOf('github.com') !== -1 && first) {
+        return first;
+      }
+      if (host.indexOf('instagram.com') !== -1 && first) {
+        return first;
+      }
+
+      // fallback
+      return href;
+    } catch (e) {
+      // if URL cannot be parsed, just return original
+      return href;
+    }
+  }
+
+  // set the icon based on the clicked anchor image
+  function contactSetIconFromAnchor(anchor) {
+    var img = anchor.querySelector('img');
+    if (img) {
+      var src = img.getAttribute('src');
+      if (src) {
+        contactIcon.src = src;
+      } else {
+        contactIcon.removeAttribute('src');
+      }
+      var alt = img.getAttribute('alt');
+      if (alt && alt.length > 0) {
+        contactIcon.alt = alt + ' icon';
+      } else {
+        contactIcon.alt = '';
+      }
+    } else {
+      contactIcon.removeAttribute('src');
+      contactIcon.alt = '';
+    }
+    return img;
+  }
+
+  // provider display name for the title
+  function contactProviderName(href, img) {
+    if (img) {
+      var a = img.getAttribute('alt');
+      if (a && a.length > 0) {
+        return a;
+      }
+    }
+    try {
+      var u = new URL(href);
+      if (u.hostname) {
+        return u.hostname;
+      } else {
+        return 'Contact';
+      }
+    } catch (e) {
+      return 'Contact';
+    }
+  }
+
+  // open the sheet
+  function openContactSheet(anchor) {
+    var href = anchor.getAttribute('href');
+    if (!href) {
+      href = '#';
+    }
+
+    var img  = contactSetIconFromAnchor(anchor);
+    var provider = contactProviderName(href, img);
+
+    contactTitle.textContent = provider;
+    contactLink.href = href;
+    contactLink.textContent = href;
+    contactOpenBtn.href = href;
+
+    var id = contactExtractId(href);
+
+    // copy handler with fallback when clipboard API is missing
+    contactCopyBtn.textContent = 'Copy';
+    contactCopyBtn.onclick = function () {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(id).then(function () {
+          var prev = contactCopyBtn.textContent;
+          contactCopyBtn.textContent = 'Copied!';
+          setTimeout(function () { contactCopyBtn.textContent = prev; }, 1200);
+        }).catch(function () {
+          var prev1 = contactCopyBtn.textContent;
+          contactCopyBtn.textContent = 'Failed';
+          setTimeout(function () { contactCopyBtn.textContent = prev1; }, 1200);
+        });
+      } else {
+        // fallback method
+        var temp = document.createElement('input');
+        temp.type = 'text';
+        temp.value = id;
+        document.body.appendChild(temp);
+        temp.select();
+        try { document.execCommand('copy'); } catch (err) {}
+        document.body.removeChild(temp);
+
+        var prev2 = contactCopyBtn.textContent;
+        contactCopyBtn.textContent = 'Copied!';
+        setTimeout(function () { contactCopyBtn.textContent = prev2; }, 1200);
+      }
+    };
+
+    document.body.style.overflow = 'hidden';
+    contactSheet.classList.add('visible');
+    contactSheet.setAttribute('aria-hidden', 'false');
+    contactOpenBtn.focus();
+  }
+
+  // close the sheet
+  function closeContactSheet() {
+    contactSheet.classList.remove('visible');
+    contactSheet.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  // intercept clicks on contact icons
+  var contactAnchors = document.querySelectorAll('#contact-links a');
+  var i = 0;
+  while (i < contactAnchors.length) {
+    contactAnchors[i].addEventListener('click', function (e) {
+      e.preventDefault();
+      openContactSheet(this);
+    });
+    i = i + 1;
+  }
+
+  // backdrop and close button
+  contactBackdrop.addEventListener('click', function () { closeContactSheet(); });
+  contactCloseBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    closeContactSheet();
+  });
+
+  // escape key
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && contactSheet.classList.contains('visible')) {
+      closeContactSheet();
+    }
+  });
+}
