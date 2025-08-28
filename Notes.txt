@@ -16,16 +16,13 @@ prevent others from accesing my links and api
 
 
 
-each project needs to have data-repo and data-modalimg added.
-fix the title of the project being covered.
 redo a short and long summary
 
-FIX TITLE OF PROJECT NOT DSIAPLYING
 
 
 
 
-make message box in contact email scorllable. 
+
 make timeline format propperly for mobikle
 make header format propperly for mobile
 make porject resize propperly for mopbiel if possible

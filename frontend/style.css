@@ -77,11 +77,11 @@ p {
     margin-bottom: 100px;
 }
 .navbar a {
-  margin-right: 20px;
+  margin-right: clamp(0.4em, 1.7vw, 1em);
   text-decoration: none;
   color: var(--text);
   font-weight: bold;
-  font-size: clamp(0.5em, 2vw, 1em);
+  font-size: clamp(0.4em, 1.7vw, 1em);
 }
 .navbar h2 {
     font-size: clamp(1em, 4vw, 3em);
@@ -118,14 +118,18 @@ p {
     z-index: 1;
     text-align: left;
     margin: auto;
-    max-width: 60vw;
+    max-width: min(92vw, 72rem);
 }
 #hello_image {
     display: flex;
     flex-direction: row;
 }
 #herohello {
-    margin: 0;
+  margin: 0;
+  font-size: clamp(1.15rem, 6vw, 3rem);
+  line-height: 1.15;      
+  margin: 0.2em 0 0.05em; 
+  text-align: left;
 }
 #heroname {
     color: var(--accent2);
@@ -138,10 +142,15 @@ p {
     vertical-align: top;
 }
 #herointro {
-    font-size: 2.8em;
+  font-size: clamp(1.15rem, 6vw, 3rem);
+  line-height: 1.15;      
+  margin: 0.2em 0 0.05em; 
 }
 #heropara {
     color: var(--accent);
+}
+#herobody {
+  font-size: clamp(0.7rem, 2vw, 2rem);
 }
 
 
@@ -149,6 +158,7 @@ p {
     display: flex;
     flex-direction: column;
     position: relative;
+    max-width: 80vw;
     width: fit-content;
     z-index: 1;
     text-align: left;
@@ -179,22 +189,21 @@ p {
     font-size: 1em;
     border: none;
     border-radius: 4px;
-    margin-top: 0.5em;
     background: var(--bg2);
     color: var(--text);
 }
 #chatform button {
     position: absolute;
-    top: 50%;
+    bottom: 0.5em;
     transform: translateY(20%);
     right: 0.2em;
     background: linear-gradient(to right, var(--accent), var(--accent2));
     border: none;
-    padding: 0.4em 0.8em;
+    padding: 0.3em 0.8em;
     border-radius: 4px;
     font-weight: bold;
     cursor: pointer;
-    font-size: 0.9em;
+    font-size: 1em;
 }
 #chatbot button:hover {
     transform: scale(1.05) translate(0%, 10%);
@@ -211,7 +220,7 @@ p {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 40px;
+  gap: clamp(12px, 3vw, 24px);
   max-width: 80vw;
   margin: 0 auto;
   flex-wrap: wrap;
@@ -223,7 +232,7 @@ p {
   flex: 1;
 }
 #pfp {
-  width: 45%;
+  width:  clamp(96px, 22vw, 160px);
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   object-fit: cover;
@@ -256,6 +265,7 @@ p {
 }
 #about-right p {
   margin-bottom: 16px;
+  font-size: clamp(0.4rem, 3.5vw, 1.8rem);
 }
 
 
@@ -274,7 +284,7 @@ p {
   position: sticky;
   top: 15rem;
   margin: 3.5em auto;
-  width: min(92%, clamp(340px, 60vw, 980px));
+  width: min(85%, clamp(340px, 60vw, 980px));
   padding: clamp(16px, 2vw, 26px);
   border-radius: 16px;
   background: linear-gradient(180deg, rgba(22,27,34,.88), rgba(13,17,23,.9));
@@ -282,7 +292,6 @@ p {
   box-shadow: 0 18px 50px rgba(0,0,0,.35);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  overflow: auto;
 
   /* two-column card: text left, image right */
   display: grid;
@@ -292,7 +301,7 @@ p {
 }
 .project h3{
   color: var(--text);
-  font-size: clamp(1.1rem, 1.7vw, 1.6rem);
+  font-size: clamp(0.6rem, 1.7vw, 1.6rem);
   font-weight: 800;
   margin: 0 0 .5rem 0;
   white-space: nowrap; 
@@ -307,7 +316,7 @@ p {
 }
 .project p{
   color: var(--subtext);
-  font-size: clamp(.95rem, 1.1vw, 1.05rem);
+  font-size: clamp(.5rem, 1.1vw, 1.05rem);
   line-height: 1.6;
   margin: .25rem 0 1rem 0;
   display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
@@ -315,9 +324,13 @@ p {
 .project-cta{
   align-self: start;
   background: linear-gradient(to right, var(--accent), var(--accent2));
-  color: #fff; border: none; border-radius: 12px;
-  padding: .6rem 1rem; font-weight: 700; cursor: pointer;
+  color: #fff; 
+  border: none; 
+  padding: .6rem 1rem; 
+  font-weight: 700; 
+  cursor: pointer;
   transition: transform .15s ease;
+  font-size: clamp(0.5rem, 1.7vw, 1.6rem);
 }
 .project-cta:hover{ 
   transform: translateY(-1px); 
@@ -329,7 +342,6 @@ p {
 }
 .project-thumb img{
   width: 100%;
-  min-width: 8em;
   border-radius: 12px;
   display:block;
   box-shadow: 0 8px 30px rgba(0,0,0,.35);
@@ -441,10 +453,10 @@ p {
   border-radius: 10px;
 }
 #education h3 {
-   font-size: 2rem;
+   font-size: clamp(1rem, 3vw, 2rem);
 }
 #education p {
-    font-size: 1em;
+    font-size: clamp(0.5rem, 1vw, 2rem);
     margin-top: 0.2em;
     font-weight: 600;
     margin-top: 0;
@@ -459,7 +471,8 @@ p {
   padding: 20px;
 }
 .hs {
-  width: 25vw;
+  width: auto;
+  max-width: 40vw;
   justify-content: flex-end; 
 }
 .mid-bar {
@@ -472,19 +485,20 @@ p {
 }
 #education .mid-bar img{
   position: absolute;
-  width: 7vw;
+  width: clamp(3rem, 5vw, 6rem);;
   height: auto;
   left: 50%;
   transform: translateX(-50%);
 }
 #hs-img {
-  top: 5%;
+  top: 8%;
 }
 #uoft-img {
-  top: 70%;
+  bottom: 8%;
 }
 .uni {
-  width: 25vw;
+  width: auto;
+  max-width: 40vw;
   align-self: flex-end;
 }
 /* Flat horizontal bar at top */
@@ -511,6 +525,26 @@ p {
   border-right: 10px solid transparent;
   border-top: 15px solid var(--accent);
 }
+/* small screens: rail on the right, both cards on the left */
+@media (max-width: 900px){
+  #education{
+    display: grid;
+  }
+  #education h1 {
+    grid-row: 1;
+    grid-column: 1 / span 3;
+  }
+  .hs, .uni{ 
+    grid-column: 1; 
+  }
+  .mid-bar{ 
+    grid-column: 3; 
+    grid-row: 2 / span 2;
+    justify-self: end; 
+  }
+}
+
+
 
 #contact-anchor {
   position: relative;
@@ -533,7 +567,7 @@ p {
   margin-bottom: 2rem;
 }
 .contact-container {
-  width: 40vw;
+  width: 50vw;
   height: 20em;
   margin: auto;
   background-color: var(--bg2);
@@ -560,7 +594,7 @@ p {
   border: none;
   border-radius: 8px;
   resize: none;
-  overflow: hidden;
+  overflow-y: auto;
 }
 .input-group input::placeholder,
 .input-group textarea::placeholder {
@@ -579,6 +613,8 @@ button {
 button:hover {
   transform: scale(1.05);
 }
+
+
 #contact-links {
   margin-top: 2em;
 }
