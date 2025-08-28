@@ -21,3 +21,13 @@ fix the title of the project being covered.
 redo a short and long summary
 
 FIX TITLE OF PROJECT NOT DSIAPLYING
+
+
+
+
+make message box in contact email scorllable. 
+make timeline format propperly for mobikle
+make header format propperly for mobile
+make porject resize propperly for mopbiel if possible
+
+make contact email button acutally work with backend and captcha

@@ -185,7 +185,6 @@ async function ask_ai_api(userInput) {
 
 
 
-// Add to your script.js (extend what you already have)
 const modal = document.getElementById('project-modal');
 const modalCard = modal.querySelector('.modal-card');
 const modalTitle = document.getElementById('modal-title');
@@ -280,55 +279,13 @@ if (contactSheet) {
 
   // extract a clean identifier (username, email, phone) from href
   function contactExtractId(href) {
-    try {
-      // mailto
-      if (href.indexOf('mailto:') === 0) {
-        return href.substring(7); // remove 'mailto:'
-      }
-      // tel
-      if (href.indexOf('tel:') === 0) {
-        return href.substring(4); // remove 'tel:'
-      }
+    if (href.startsWith("mailto:"))       return href.replace("mailto:", "");
+    if (href.startsWith("tel:"))          return href.replace("tel:", "");
+    if (href.includes("github.com/"))     return href.split("github.com/")[1];
+    if (href.includes("instagram.com/"))  return href.split("instagram.com/")[1];
+    if (href.includes(".pdf"))            return href.split('/').pop();
 
-      // parse URL
-      var u = new URL(href);
-
-      // hostname lowercased
-      var host = '';
-      if (u.hostname) {
-        host = u.hostname.toLowerCase();
-      }
-
-      // pathname without leading slashes
-      var path = '';
-      if (u.pathname) {
-        path = u.pathname;
-      }
-      while (path.length > 0 && path.charAt(0) === '/') {
-        path = path.substring(1);
-      }
-
-      // first path segment
-      var first = '';
-      var parts = path.split('/');
-      if (parts.length > 0) {
-        first = parts[0];
-      }
-
-      // provider specific extraction
-      if (host.indexOf('github.com') !== -1 && first) {
-        return first;
-      }
-      if (host.indexOf('instagram.com') !== -1 && first) {
-        return first;
-      }
-
-      // fallback
-      return href;
-    } catch (e) {
-      // if URL cannot be parsed, just return original
-      return href;
-    }
+    return href; // fallback 
   }
 
   // set the icon based on the clicked anchor image
@@ -355,23 +312,18 @@ if (contactSheet) {
   }
 
   // provider display name for the title
-  function contactProviderName(href, img) {
-    if (img) {
+  function contactProviderName(img) {
       var a = img.getAttribute('alt');
       if (a && a.length > 0) {
         return a;
       }
-    }
-    try {
-      var u = new URL(href);
-      if (u.hostname) {
-        return u.hostname;
-      } else {
+      else {
         return 'Contact';
       }
-    } catch (e) {
-      return 'Contact';
-    }
+  }
+
+  function isPDF(href) {
+    return href.toLowerCase().endsWith('.pdf');
   }
 
   // open the sheet
@@ -382,44 +334,54 @@ if (contactSheet) {
     }
 
     var img  = contactSetIconFromAnchor(anchor);
-    var provider = contactProviderName(href, img);
-
-    contactTitle.textContent = provider;
-    contactLink.href = href;
-    contactLink.textContent = href;
-    contactOpenBtn.href = href;
-
+    var provider = contactProviderName(img);
     var id = contactExtractId(href);
 
-    // copy handler with fallback when clipboard API is missing
-    contactCopyBtn.textContent = 'Copy';
-    contactCopyBtn.onclick = function () {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(id).then(function () {
-          var prev = contactCopyBtn.textContent;
+    contactTitle.textContent = provider;
+    contactLink.textContent = id;
+    contactOpenBtn.href = href;
+
+    if (isPDF(href)) {
+      contactTitle.textContent = 'Resume';
+      contactLink.style.display = 'none';
+      contactCopyBtn.style.display = 'none';
+      contactOpenBtn.textContent = 'Download PDF';
+
+    }
+    else {
+      contactLink.style.display = 'inline-flex';
+      contactCopyBtn.style.display = 'inline-flex';
+      contactOpenBtn.textContent = 'Open Link';
+
+      // copy handler with fallback when clipboard API is missing
+      contactCopyBtn.textContent = 'Copy ID';
+      contactCopyBtn.onclick = function () {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(id).then(function () {
+            var prev = contactCopyBtn.textContent;
+            contactCopyBtn.textContent = 'Copied!';
+            setTimeout(function () { contactCopyBtn.textContent = prev; }, 1200);
+          }).catch(function () {
+            var prev1 = contactCopyBtn.textContent;
+            contactCopyBtn.textContent = 'Failed';
+            setTimeout(function () { contactCopyBtn.textContent = prev1; }, 1200);
+          });
+        } else {
+          // fallback method
+          var temp = document.createElement('input');
+          temp.type = 'text';
+          temp.value = id;
+          document.body.appendChild(temp);
+          temp.select();
+          try { document.execCommand('copy'); } catch (err) {}
+          document.body.removeChild(temp);
+
+          var prev2 = contactCopyBtn.textContent;
           contactCopyBtn.textContent = 'Copied!';
-          setTimeout(function () { contactCopyBtn.textContent = prev; }, 1200);
-        }).catch(function () {
-          var prev1 = contactCopyBtn.textContent;
-          contactCopyBtn.textContent = 'Failed';
-          setTimeout(function () { contactCopyBtn.textContent = prev1; }, 1200);
-        });
-      } else {
-        // fallback method
-        var temp = document.createElement('input');
-        temp.type = 'text';
-        temp.value = id;
-        document.body.appendChild(temp);
-        temp.select();
-        try { document.execCommand('copy'); } catch (err) {}
-        document.body.removeChild(temp);
-
-        var prev2 = contactCopyBtn.textContent;
-        contactCopyBtn.textContent = 'Copied!';
-        setTimeout(function () { contactCopyBtn.textContent = prev2; }, 1200);
-      }
-    };
-
+          setTimeout(function () { contactCopyBtn.textContent = prev2; }, 1200);
+        }
+      };
+  }
     document.body.style.overflow = 'hidden';
     contactSheet.classList.add('visible');
     contactSheet.setAttribute('aria-hidden', 'false');

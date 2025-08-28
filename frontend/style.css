@@ -648,6 +648,9 @@ button:hover {
   font-size:clamp(1rem,1.5vw,1.2rem); 
   color:var(--text); 
 }
+#contact-sheet-title, .contact-sheet-meta {
+  text-align: start;
+}
 #contact-sheet-link{ 
   display:inline-block; 
   margin-top:4px; 
