@@ -7,6 +7,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@latest/tsparticles.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-triangles@latest/tsparticles.preset.triangles.bundle.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
     <!-- Montserrat and Nunito Sans font -->
@@ -218,7 +219,7 @@
     <section id="contact">
       <h2>Contact</h2>
       <div class="contact-container">
-        <form id="contact-form">
+        <form id="contact-form" method="POST" action="/contact">
           <div class="input-group">
             <label><i class="fas fa-user"></i> Name</label>
             <input type="text" name="name" placeholder="Your name" required>
@@ -234,9 +235,13 @@
             <textarea name="message" placeholder="Write your message..." required></textarea>
           </div>
 
+          <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
+          <p id="contact-status" class="contact-status" aria-live="polite"></p>
+
           <button type="submit">
             Send Email <i class="fas fa-paper-plane"></i>
           </button>
+
         </form>
       </div>
 

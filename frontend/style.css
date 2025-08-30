@@ -568,7 +568,7 @@ p {
 }
 .contact-container {
   width: 50vw;
-  height: 20em;
+  height: fit-content;
   margin: auto;
   background-color: var(--bg2);
   border-radius: 15px;
@@ -599,6 +599,22 @@ p {
 .input-group input::placeholder,
 .input-group textarea::placeholder {
   color: rgba(245,245,245,0.5);
+}
+.g-recaptcha {
+  margin: 1.5rem;
+}
+@media (max-width: 420px) {
+  .g-recaptcha {
+    transform: scale(0.8) translateX(-50%);
+    transform-origin: center;
+  }
+}
+.contact-status {
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--subtext);
+  min-height: 1.2em; 
+  margin: 6px 0 0;
 }
 button {
   background: linear-gradient(to right, var(--accent), var(--accent2));
@@ -724,7 +740,9 @@ button:hover {
   cursor:pointer; 
 }
 
-@media (max-width:640px){ .contact-sheet{ max-height:38vh; } }
+@media (max-width:640px){ 
+  .contact-sheet{ max-height:38vh; } 
+}
 
 
 

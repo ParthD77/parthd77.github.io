@@ -1,5 +1,7 @@
 tsParticles.loadJSON("tsparticles", "assets/particles.json");
 
+const API_BASE = 'https://YOUR-BACKEND.onrender.com';  // replace after backend is live
+
 
 // parallax on scroll
 window.addEventListener("scroll", () => {
@@ -162,7 +164,7 @@ async function ask_ai_api(userInput) {
 
   // fetch from AI backend
   try{
-    const response  = await fetch("http://127.0.0.1:5000/chat",  {
+    const response  = await fetch(`${API_BASE}/chat`,  {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body:  JSON.stringify({ question: userInput })
@@ -420,3 +422,58 @@ if (contactSheet) {
     }
   });
 }
+
+
+
+// ----- Contact form submit with reCAPTCHA verification -----
+(function () {
+  var form = document.getElementById('contact-form');
+  if (!form) { return; }
+
+  var status = document.getElementById('contact-status');
+  var btn = form.querySelector('button[type="submit"]');
+
+  function setStatus(text, ok) {
+    if (status) {
+      status.textContent = text || '';
+      status.style.color = ok ? 'var(--accent2)' : 'var(--subtext)';
+    }
+  }
+
+  form.addEventListener('submit', async function (e) {
+    // use browser's built-in HTML validation
+    if (!form.checkValidity()) { return; }
+
+    e.preventDefault();
+
+    // ensure reCAPTCHA solved (UX only; server must still verify)
+    var captchaOk = (typeof grecaptcha !== 'undefined') &&
+                    grecaptcha.getResponse &&
+                    grecaptcha.getResponse().length > 0;
+    if (!captchaOk) {
+      setStatus('Please complete the CAPTCHA.', false);
+      return;
+    }
+
+    // lock UI
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+    setStatus('Sending your message…', true);
+
+    try {
+      var fd = new FormData(form);
+      var r = await fetch(`${API_BASE}/chat`, { method: 'POST', body: fd });
+
+
+      if (!r.ok) { throw new Error('Bad status ' + r.status); }
+   
+
+      setStatus('Message sent. I’ll get back to you soon.', true);
+      try { form.reset(); } catch (err) {}
+      try { if (typeof grecaptcha !== 'undefined') { grecaptcha.reset(); } } catch (err) {}
+    } catch (err) {
+      setStatus('Send failed. Please try again.', false);
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = 'Send Email'; }
+    }
+  });
+})();
