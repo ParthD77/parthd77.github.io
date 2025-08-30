@@ -1,4 +1,4 @@
-tsParticles.loadJSON("tsparticles", "assets/particles.json");
+tsParticles.loadJSON("tsparticles", "frontend/assets/particles.json");
 
 const API_BASE = 'https://YOUR-BACKEND.onrender.com';  // replace after backend is live
 
