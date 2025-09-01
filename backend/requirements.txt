@@ -3,3 +3,5 @@ gunicorn==21.*
 Flask-Cors==4.*
 requests==2.*
 resend==2.*
+python-dotenv
+openai
