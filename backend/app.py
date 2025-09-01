@@ -122,7 +122,7 @@ def contact():
         "reply_to": email
     }
 
-  r = resend.emails.send(params)
+  r = resend.Emails.send(params)
   return jsonify(r)
 
 if __name__ == "__main__":
