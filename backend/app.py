@@ -8,10 +8,9 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 allowed = [
-  "https://your-domain.com",
-  "https://www.your-domain.com",
-  "http://localhost:5500"  # dev only
-]
+  "https://parthdhroovji.me",
+  "https://www.parthdhroovji.me"
+  ]
 CORS(app, resources={ r"/chat": {"origins": allowed} })
 
 @app.route('/chat', methods=['POST'])
@@ -115,7 +114,7 @@ def contact():
 
   # Send Email Via resend
   params: resend.Emails.SendParams = {
-        "from": "Portfolio Contact <hello@yourdomain.com>", 
+        "from": "Portfolio Contact <contact@parthdhroovji.me>", 
         "to": ["parthdhroovji1@gmail.com"],
         "subject": f"New message from {name}",
         "html": f"<p><b>From:</b> {name} &lt;{email}&gt;</p><p>{message}</p>",

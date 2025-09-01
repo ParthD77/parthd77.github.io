@@ -1,6 +1,6 @@
 tsParticles.loadJSON("tsparticles", "frontend/assets/particles.json");
 
-const API_BASE = 'https://YOUR-BACKEND.onrender.com';  // replace after backend is live
+const API_BASE = 'https://parthdhroovji.me'; 
 
 
 // parallax on scroll
@@ -461,7 +461,7 @@ if (contactSheet) {
 
     try {
       var fd = new FormData(form);
-      var r = await fetch(`${API_BASE}/chat`, { method: 'POST', body: fd });
+      var r = await fetch(`${API_BASE}/contact`, { method: 'POST', body: fd });
 
 
       if (!r.ok) { throw new Error('Bad status ' + r.status); }
