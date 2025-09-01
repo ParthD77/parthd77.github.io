@@ -11,7 +11,8 @@ allowed = [
   "https://parthdhroovji.me",
   "https://www.parthdhroovji.me"
   ]
-CORS(app, resources={ r"/chat": {"origins": allowed} })
+CORS(app, origins=allowed)
+
 
 @app.route('/chat', methods=['POST'])
 def handle_request():

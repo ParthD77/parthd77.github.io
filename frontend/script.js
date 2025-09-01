@@ -1,6 +1,6 @@
 tsParticles.loadJSON("tsparticles", "frontend/assets/particles.json");
 
-const API_BASE = 'https://parthdhroovji.me'; 
+const API_BASE = 'https://parthdhroovji-me.onrender.com'; 
 
 
 // parallax on scroll
