@@ -6,8 +6,14 @@
   --accent: #00C2FF;
   --accent2: #4F9BFF;
   --radius: 8px;
+  --spacing: 40em;
 }
 
+@media (max-width: 900px){
+  :root {
+    --spacing: 15em;
+  }
+}
 
 ::-webkit-scrollbar {
   width: 10px;
@@ -214,7 +220,7 @@ p {
 
 
 #about-me {
-  margin-top: 40em;
+  margin-top: var(--spacing);
 }
 #about-container {
   display: flex;
@@ -273,7 +279,7 @@ p {
   text-align: center;
   position: relative;
   top: 8rem;
-  margin-top: 40em;
+  margin-top: var(--spacing);
 }
 #project-title {
   position: sticky;
@@ -440,7 +446,7 @@ p {
 #education {
   text-align: center;
   position: relative;
-  margin-top: 52em;
+  margin-top: calc(var(--spacing) + 12em);
   display: flex;
   flex-direction: row;
   flex-flow: wrap;
@@ -451,6 +457,7 @@ p {
 #education h1{
   flex: 0 0 100%; /* take full row */
   border-radius: 10px;
+  margin: 1rem;
 }
 #education h3 {
    font-size: clamp(1rem, 3vw, 2rem);
@@ -541,6 +548,7 @@ p {
     grid-column: 3; 
     grid-row: 2 / span 2;
     justify-self: end; 
+    height: 50vh;
   }
 }
 
@@ -555,10 +563,10 @@ p {
 #contact {
   background-color: var(--bg);
   color: var(--text);
-  padding: 3rem 2rem 2rem 2rem;
+  padding: 1rem 1rem 1rem 1rem;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
-  margin-top: 40em;
+  margin-top: var(--spacing);
   display: flex;
   flex-direction: column;
 }
@@ -568,15 +576,16 @@ p {
 }
 .contact-container {
   width: 50vw;
+  max-height: 50vh;
   height: fit-content;
   margin: auto;
   background-color: var(--bg2);
   border-radius: 15px;
-  padding: 4rem;
+  padding: 1rem 3rem 4rem 3rem;
   box-shadow: 0 0 30px rgba(0, 194, 255, 0.15);
 }
 .input-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   text-align: left;
 }
 .input-group label {
@@ -601,13 +610,8 @@ p {
   color: rgba(245,245,245,0.5);
 }
 .g-recaptcha {
-  margin: 1.5rem;
-}
-@media (max-width: 420px) {
-  .g-recaptcha {
-    transform: scale(0.8) translateX(-50%);
-    transform-origin: center;
-  }
+  margin-top: 0.2rem;
+  margin-bottom: 0.4rem;
 }
 .contact-status {
   text-align: center;
@@ -629,8 +633,6 @@ button {
 button:hover {
   transform: scale(1.05);
 }
-
-
 #contact-links {
   margin-top: 2em;
 }
@@ -641,6 +643,41 @@ button:hover {
 }
 #contact-links a {
   display: inline-block;
+}
+@media (max-width: 420px) {
+  .contact-container {
+    padding: 0 3rem 9rem 2rem;
+    margin-bottom: 0rem;
+  }
+  #contact h2 {
+    margin: 0;
+  }
+  .g-recaptcha {
+    transform: scale(0.6);
+    transform-origin: left top;
+  }
+  #contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;      /* center the icon row */
+    gap: clamp(8px, 4vw, 16px);   /* controls spacing between icons */
+    text-align: center;
+    margin-top: 0;
+  }
+  #contact-links h3{
+    flex: 0 0 100%;               /* keep the heading on its own line */
+    margin: 0 0 0 .5rem;
+    font-size: clamp(1rem, 4.5vw, 1.25rem);
+  }
+  #contact-links a{
+    display: inline-flex;         /* ensures the img box sizes cleanly */
+  }
+  #contact-links img{
+    width:  clamp(36px, 10vw, 56px);
+    height: clamp(36px, 10vw, 56px);
+    margin: 0 0.2em;                    /* margins handled by gap above */
+    padding: 0;                   /* remove extra padding on mobile */
+  }
 }
 
 
