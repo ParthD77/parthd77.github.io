@@ -10,21 +10,10 @@ scrolling aniamtiosn where boxes and divs move into place a little
 
 TODO:
 prevent chat spam
-move links to navbar
-background glitch when scrolling
-prevent others from accesing my links and api
 
-VERIFY VALID EMAIL
 
-redo a short and long summary
+redo a short and long summary of projects
 
 
 
 
-
-
-make timeline format propperly for mobikle
-make header format propperly for mobile
-make porject resize propperly for mopbiel if possible
-
-make contact email button acutally work with backend and captcha

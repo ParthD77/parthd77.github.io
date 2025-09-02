@@ -276,6 +276,12 @@ p {
   margin-bottom: 16px;
   font-size: clamp(0.4rem, 3.5vw, 1.8rem);
 }
+@media (max-width: 900px){
+  #pfp {
+    box-shadow: 0 0 10px 8px rgba(27, 89, 160, 0.8);
+  }
+}
+
 
 
 #projects {
