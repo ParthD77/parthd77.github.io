@@ -398,14 +398,12 @@ if (contactSheet) {
   }
 
   // intercept clicks on contact icons
-  var contactAnchors = document.querySelectorAll('#contact-links a');
-  var i = 0;
-  while (i < contactAnchors.length) {
-    contactAnchors[i].addEventListener('click', function (e) {
+  const contactAnchors = document.querySelectorAll('#contact-links a');
+  for (let k = 0; k < contactAnchors.length; k++) {
+    contactAnchors[k].addEventListener('click', function (e) {
       e.preventDefault();
       openContactSheet(this);
     });
-    i = i + 1;
   }
 
   // backdrop and close button
