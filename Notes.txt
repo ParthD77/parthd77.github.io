@@ -10,7 +10,7 @@ scrolling aniamtiosn where boxes and divs move into place a little
 
 TODO:
 prevent chat spam
-
+verifu if its a valid email theyre sending as
 
 redo a short and long summary of projects
 
