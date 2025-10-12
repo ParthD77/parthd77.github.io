@@ -23,8 +23,6 @@ redo a short and long summary
 
 
 
-make timeline format propperly for mobikle
-make header format propperly for mobile
-make porject resize propperly for mopbiel if possible
+
 
 make contact email button acutally work with backend and captcha
