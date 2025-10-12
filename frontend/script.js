@@ -211,7 +211,13 @@ function openProjectModal(card, originEl){
   const img   = card.dataset.modalimg || card.querySelector('.project-thumb img')?.src || '';
 
   modalTitle.textContent = title;
-  modalBody.innerHTML = `<p>${desc}</p>`;
+  const raw = (card.dataset.desc || "").trim();
+  const lines = raw.split(/\n+/).map(s => s.trim()).filter(Boolean);
+  modalBody.innerHTML = `
+    <ul class="desc-list">
+      ${lines.map(li => `<li>${li}</li>`).join("")}
+    </ul>`;
+
 
   if (img) {
     modalImage.src = img;

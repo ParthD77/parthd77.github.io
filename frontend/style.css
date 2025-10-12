@@ -425,9 +425,18 @@ p {
   display:block;
   box-shadow: 0 12px 40px rgba(0,0,0,.35);
 }
+.desc-list{
+  margin: .25rem 0 0;
+  padding-left: 1.2rem;
+}
+.desc-list li{
+  margin: .25rem 0;
+  color: var(--subtext);
+}
+
 .modal-actions{
   display:flex;
-  justify-content:;
+  justify-content:space-between;
   gap:.6rem;
   margin-top: 1rem;
 }
