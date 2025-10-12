@@ -10,19 +10,10 @@ scrolling aniamtiosn where boxes and divs move into place a little
 
 TODO:
 prevent chat spam
-move links to navbar
-background glitch when scrolling
-prevent others from accesing my links and api
+verifu if its a valid email theyre sending as
 
-
-
-redo a short and long summary
+redo a short and long summary of projects
 
 
 
 
-
-
-
-
-make contact email button acutally work with backend and captcha
