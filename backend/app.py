@@ -100,7 +100,7 @@ def ask_ai_api(user_question):
     )
 
     completion = client.chat.completions.create(
-          model="gemini-2.0-flash-lite",
+          model="gemini-3.1-flash-lite",
           messages = [
             {
                 "role": "system",
