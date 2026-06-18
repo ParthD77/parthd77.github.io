@@ -77,6 +77,7 @@ const closeBtn = document.getElementById('close-chat');
 const sendBtn = document.getElementById('send-chat');
 const inputBox = document.getElementById('chat-user-input');
 const chatMessages = document.getElementById('chat-messages');
+let isChatPending = false;
 
 
 /// Character count for chat input on ai chat screen
@@ -110,9 +111,19 @@ closeBtn.addEventListener("click", handleChatCloseBtn)
 
 // Send message
 async function sendMessage() {
-  const userText = inputBox.value.trim();
-  if (!userText) return;
+  if (isChatPending) return;
 
+  const userText = inputBox.value.trim();
+  if (!userText) {
+    const validationBubble = document.createElement('div');
+    validationBubble.className = 'message bot';
+    validationBubble.textContent = "Please enter a question.";
+    chatMessages.appendChild(validationBubble);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    return;
+  }
+
+  isChatPending = true;
   inputBox.value = "";
   sendBtn.disabled = true;
   inputBox.disabled = true;
@@ -126,32 +137,31 @@ async function sendMessage() {
   // fetch from AI backend
   const botBubble = document.createElement('div');
   botBubble.className = 'message bot';
-  botBubble.textContent = "Thinking...";
+  botBubble.textContent = "Thinking... The chatbot may take a moment if the backend is waking up.";
 
   chatMessages.appendChild(botBubble);
-    requestAnimationFrame(() => {
+  requestAnimationFrame(() => {
     chatMessages.scrollTop = chatMessages.scrollHeight;
-    });
+  });
 
-
-  const response = await ask_ai_api(userText);
-  botBubble.textContent = response;
-
-  setTimeout(() => {
-    requestAnimationFrame(() => {
+  try {
+    botBubble.textContent = await ask_ai_api(userText);
+  } finally {
+    isChatPending = false;
+    sendBtn.disabled = false;
+    inputBox.disabled = false;
+    inputBox.focus();
+    inputBox.dispatchEvent(new Event('input'));
     chatMessages.scrollTop = chatMessages.scrollHeight;
-    });
-  }, 500);
-
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-  inputBox.dispatchEvent(new Event('input'));
-  sendBtn.disabled = false;
-  inputBox.disabled = false;
+  }
 }
 
 sendBtn.addEventListener('click', sendMessage);
 inputBox.addEventListener('keydown', e => {
-  if (e.key === 'Enter') sendMessage();
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    sendMessage();
+  }
 });
 
 
@@ -160,26 +170,40 @@ inputBox.addEventListener('keydown', e => {
 
 // BACKEND
 async function ask_ai_api(userInput) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 75000);
 
-
-  // fetch from AI backend
   try{
     const response  = await fetch(`${API_BASE}/chat`,  {
       method: "POST",
       headers: {"Content-Type": "application/json"},
-      body:  JSON.stringify({ question: userInput })
+      body: JSON.stringify({ question: userInput }),
+      signal: controller.signal
     });
+    clearTimeout(timeoutId);
+
+    const data = await response.json().catch(() => null);
+
     if (!response.ok) {
-      const errText = await response.text(); 
-      throw new Error(`Server error ${response.status}: ${errText}`);
+      if (response.status === 429) {
+        return data?.error || "Too many questions were sent. Please wait a minute and try again.";
+      }
+      return data?.error || "The chatbot backend is unavailable right now. Please try again shortly.";
     }
 
-    const data = await response.text();
-    return data;
+    if (!data?.ok || typeof data.answer !== "string") {
+      return "The chatbot returned an unexpected response. Please try again shortly.";
+    }
+
+    return data.answer;
   } 
   catch (error) {
+    clearTimeout(timeoutId);
     console.error("Error fetching AI response:", error);
-    return "⚠️ Something went wrong please try again later."; 
+    if (error.name === "AbortError") {
+      return "The chatbot backend is taking longer than expected to wake up. Please try again in a moment.";
+    }
+    return "The chatbot backend is unavailable right now. Please try again shortly.";
   }
 }
 
