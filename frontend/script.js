@@ -104,13 +104,20 @@ input.addEventListener("input", function() {
 
 
 /// ai chatbot screen
-const askButton = document.querySelector('#chatform button');
+const chatForm = document.getElementById('chatform');
 const chatPopup = document.getElementById('chatbox-wrapper');
 const closeBtn = document.getElementById('close-chat');
 const sendBtn = document.getElementById('send-chat');
 const inputBox = document.getElementById('chat-user-input');
 const chatMessages = document.getElementById('chat-messages');
 let isChatPending = false;
+
+document.querySelector('#chatbox-header p').textContent = "Parth's AI Companion";
+sendBtn.textContent = "Send";
+const initialBotMessage = chatMessages.querySelector('.message.bot');
+if (initialBotMessage) {
+  initialBotMessage.textContent = "Hi! Ask me anything about Parth. The first response may take a moment while the backend wakes up.";
+}
 
 
 /// Character count for chat input on ai chat screen
@@ -122,14 +129,21 @@ inputBox.addEventListener("input", function() {
 });
 
 function handleChatAskButton(e) {
-  e.preventDefault();  
+  e.preventDefault();
+  const shouldSend = input.value.trim().length > 0;
+
   document.body.style.overflow = 'hidden'; // disable page scrolling
   chatPopup.classList.add("visible");
   inputBox.value = input.value;
   inputBox.dispatchEvent(new Event('input'));
-  inputBox.focus();
+
+  if (shouldSend) {
+    sendMessage();
+  } else {
+    inputBox.focus();
+  }
 }
-askButton.addEventListener("click", handleChatAskButton);
+chatForm.addEventListener("submit", handleChatAskButton);
 
 function handleChatCloseBtn(e) {
   e.preventDefault();
@@ -139,6 +153,11 @@ function handleChatCloseBtn(e) {
   input.dispatchEvent(new Event('input'));
 }
 closeBtn.addEventListener("click", handleChatCloseBtn)
+chatPopup.addEventListener("click", e => {
+  if (e.target === chatPopup) {
+    handleChatCloseBtn(e);
+  }
+});
 
 
 
@@ -266,6 +285,32 @@ async function ask_ai_api(userInput) {
     return "The chatbot backend is unavailable right now. Please try again shortly.";
   }
 }
+
+
+const projectsSection = document.getElementById('projects');
+const finalProject = projectsSection?.querySelector('.proj5');
+let projectScrollFrame = null;
+
+function updateFinalProjectState() {
+  projectScrollFrame = null;
+  if (!projectsSection || !finalProject) return;
+
+  const stickyTop = Number.parseFloat(getComputedStyle(finalProject).top) || 0;
+  const finalRect = finalProject.getBoundingClientRect();
+  const sectionRect = projectsSection.getBoundingClientRect();
+  const finalIsPinned = finalRect.top <= stickyTop + 1 && sectionRect.bottom > 0;
+
+  projectsSection.classList.toggle('final-project-active', finalIsPinned);
+}
+
+function scheduleFinalProjectStateUpdate() {
+  if (projectScrollFrame !== null) return;
+  projectScrollFrame = requestAnimationFrame(updateFinalProjectState);
+}
+
+window.addEventListener('scroll', scheduleFinalProjectStateUpdate, { passive: true });
+window.addEventListener('resize', scheduleFinalProjectStateUpdate);
+updateFinalProjectState();
 
 
 

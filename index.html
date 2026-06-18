@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Parth Dhroovji | Portfolio</title>
-    <link rel="stylesheet" href="frontend/style.css">
+    <link rel="stylesheet" href="frontend/style.css?v=20260618-4">
     <meta charset="UTF-8">
 
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@latest/tsparticles.bundle.min.js"></script>
@@ -52,12 +52,13 @@
 
 
     <section id="chatbot">
-      <h3>Ask my personal AI companion anything about me here.</h3>
-      <p id="charCount1">Character limit: 200</p>
+      <h3>Have a question about me?</h3>
+      <p class="chatbot-description">Ask about my experience, projects, skills, or education.</p>
       <form id="chatform">
-        <input id="chatinput" type="text" placeholder="Type your question here..." maxlength="200">
+        <input id="chatinput" type="text" placeholder="What would you like to know?" maxlength="200">
         <button id="submit">Ask</button>
       </form>
+      <p id="charCount1">Character limit: 0/200</p>
     </section>
 
 
@@ -216,28 +217,36 @@
 
     <section id="education">
       <h1>Education</h1>
-      <div class="side hs">
-        <h3>HighSchool</h3>
-        <p>- Graduated from David Suzuki Secondary School with a 4.0 GPA 
-          <br> <br>
-           - Achieved the highest grade in Grade 12 Computer Science 
-           <br> <br>
-           - Ontario Scholar
-        </p>
-      </div>
+      <div class="education-timeline">
+        <article class="education-item hs">
+          <div class="education-card">
+            <p class="education-stage">Secondary school</p>
+            <h3>David Suzuki Secondary School</h3>
+            <ul>
+              <li>Graduated with a 4.0 GPA</li>
+              <li>Highest grade in Grade 12 Computer Science</li>
+              <li>Ontario Scholar</li>
+            </ul>
+          </div>
+          <div class="education-marker">
+            <img src="frontend/assets/hs.png" alt="David Suzuki Secondary School">
+          </div>
+        </article>
 
-      <div class="side mid-bar">
-        <img src="frontend/assets/hs.png" alt="HighSchool" id="hs-img">
-        <img src="frontend/assets/uoft.png" alt="University of Toronto" id="uoft-img">
-      </div>
-
-      <div class="side uni">
-        <h3>University of Toronto</h3>
-        <p>- Computer Science major and a dual minor in math and statistics.
-           <br> <br>
-           - GPA: 3.8
-        </p>
-
+        <article class="education-item uni">
+          <div class="education-card">
+            <p class="education-stage">Undergraduate</p>
+            <h3>University of Toronto</h3>
+            <ul>
+              <li>Computer Science major</li>
+              <li>Dual minor in Mathematics and Statistics</li>
+              <li>GPA: 3.8</li>
+            </ul>
+          </div>
+          <div class="education-marker">
+            <img src="frontend/assets/uoft.png" alt="University of Toronto">
+          </div>
+        </article>
       </div>
     </section>
 
@@ -333,7 +342,7 @@
 
 
 
-    <script src="frontend/script.js?v=20260618-2"></script>
+    <script src="frontend/script.js?v=20260618-4"></script>
 
   </body>
 </html>
