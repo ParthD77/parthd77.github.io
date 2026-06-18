@@ -2,6 +2,39 @@ tsParticles.loadJSON("tsparticles", "frontend/assets/particles.json");
 
 const API_BASE = 'https://parthdhroovji-me.onrender.com'; 
 
+async function warmBackend() {
+  const startedAt = performance.now();
+  window.chatbotBackendStatus = { state: "waking" };
+  console.info("[Chatbot] Waking backend...");
+
+  try {
+    const response = await fetch(`${API_BASE}/health`, {
+      method: "GET",
+      cache: "no-store"
+    });
+    const elapsedSeconds = ((performance.now() - startedAt) / 1000).toFixed(1);
+
+    if (!response.ok) {
+      throw new Error(`Health check returned HTTP ${response.status}`);
+    }
+
+    window.chatbotBackendStatus = {
+      state: "ready",
+      elapsedSeconds: Number(elapsedSeconds)
+    };
+    console.info(`[Chatbot] Backend ready in ${elapsedSeconds}s.`);
+  } catch (error) {
+    const elapsedSeconds = ((performance.now() - startedAt) / 1000).toFixed(1);
+    window.chatbotBackendStatus = {
+      state: "unavailable",
+      elapsedSeconds: Number(elapsedSeconds)
+    };
+    console.warn(`[Chatbot] Backend wake-up check failed after ${elapsedSeconds}s.`, error);
+  }
+}
+
+warmBackend();
+
 
 // parallax on scroll
 window.addEventListener("scroll", () => {
@@ -169,6 +202,32 @@ inputBox.addEventListener('keydown', e => {
 
 
 // BACKEND
+function extractChatMessage(payload) {
+  let value = payload;
+
+  for (let depth = 0; depth < 2; depth++) {
+    if (typeof value !== "string") break;
+
+    try {
+      value = JSON.parse(value);
+    } catch {
+      return value;
+    }
+  }
+
+  if (value?.ok === true && typeof value.answer === "string") {
+    return value.answer;
+  }
+  if (value?.ok === false && typeof value.error === "string") {
+    return value.error;
+  }
+  if (typeof value?.answer === "string") {
+    return value.answer;
+  }
+
+  return null;
+}
+
 async function ask_ai_api(userInput) {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 75000);
@@ -182,20 +241,21 @@ async function ask_ai_api(userInput) {
     });
     clearTimeout(timeoutId);
 
-    const data = await response.json().catch(() => null);
+    const rawResponse = await response.text();
+    const message = extractChatMessage(rawResponse);
 
     if (!response.ok) {
       if (response.status === 429) {
-        return data?.error || "Too many questions were sent. Please wait a minute and try again.";
+        return message || "Too many questions were sent. Please wait a minute and try again.";
       }
-      return data?.error || "The chatbot backend is unavailable right now. Please try again shortly.";
+      return message || "The chatbot backend is unavailable right now. Please try again shortly.";
     }
 
-    if (!data?.ok || typeof data.answer !== "string") {
+    if (!message) {
       return "The chatbot returned an unexpected response. Please try again shortly.";
     }
 
-    return data.answer;
+    return message;
   } 
   catch (error) {
     clearTimeout(timeoutId);
