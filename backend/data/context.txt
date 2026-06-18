@@ -20,6 +20,20 @@ Retro-Space Shooter: Illustrated and designed an arcade-style space shooter game
 Paypal clone [Java]
 Pong game [Java]
 
+Proxi / Prox - Friends:
+Privacy-first iOS mobile app available on the Apple App Store.
+Built with Expo, React Native, TypeScript, Supabase, background location, maps, and push notifications.
+It anonymously alerts approved friends when they are nearby. A user's identity and map location are revealed only after that user explicitly chooses short-lived sharing for the current nearby event.
+Includes exact or approximate visibility, private-zone suppression, friend requests, blocking, profile pictures, account deletion, and privacy controls.
+The backend uses Supabase Auth, Row Level Security, RPC-mediated friendship actions, private storage, and Edge Functions for location updates, push tokens, and account deletion.
+
+GrabBoba:
+Client project for Grab Bubble Tea and Chill, a local Ontario business.
+Parth designed and developed a customer mobile app, public business website, and staff loyalty tools.
+The mobile app uses Expo, React Native, TypeScript, Supabase Auth, secure session storage, live menu data, customer accounts, loyalty balances, rewards, points history, member codes, and account deletion.
+The staff website includes authenticated customer lookup, QR scanning, point awards, reward redemption, transaction review, and a compact iPad-friendly workflow.
+The loyalty backend uses Supabase Row Level Security, Edge Functions, and immutable ledger events. Ordering and payment are intentionally outside the currently shipped MVP scope.
+
 Experience:
 Volunteer [Total: 130+ hours]
 Provided over 40 hours of tutoring support to juniors focusing on STEM-related courses

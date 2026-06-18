@@ -287,8 +287,27 @@ async function ask_ai_api(userInput) {
 }
 
 
+document.querySelectorAll('.experience-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const target = tab.dataset.experienceTab;
+
+    document.querySelectorAll('.experience-tab').forEach(item => {
+      const isActive = item === tab;
+      item.classList.toggle('active', isActive);
+      item.setAttribute('aria-selected', String(isActive));
+    });
+
+    document.querySelectorAll('.experience-panel').forEach(panel => {
+      const isActive = panel.dataset.experiencePanel === target;
+      panel.classList.toggle('active', isActive);
+      panel.hidden = !isActive;
+    });
+  });
+});
+
+
 const projectsSection = document.getElementById('projects');
-const finalProject = projectsSection?.querySelector('.proj5');
+const finalProject = projectsSection?.querySelector('.proj6');
 let projectScrollFrame = null;
 
 function updateFinalProjectState() {
@@ -337,6 +356,7 @@ function openProjectModal(card, originEl){
   const title = card.dataset.title || card.querySelector('h3')?.textContent || 'Project';
   const desc  = card.dataset.desc  || 'More details coming soon.';
   const repo  = card.dataset.repo  || ''; // e.g., https://github.com/ParthD77/rot_vid_gen
+  const linkLabel = card.dataset.linkLabel || 'View on GitHub';
   const img   = card.dataset.modalimg || card.querySelector('.project-thumb img')?.src || '';
 
   modalTitle.textContent = title;
@@ -359,10 +379,12 @@ function openProjectModal(card, originEl){
 
   if (repo) {
     modalRepo.href = repo;
+    modalRepo.textContent = linkLabel;
     modalRepo.style.display = 'inline-flex';
     modalRepo.setAttribute('aria-label', `Open ${title} on GitHub`);
   } else {
     modalRepo.removeAttribute('href');
+    modalRepo.textContent = 'View on GitHub';
     modalRepo.style.display = 'none';
   }
 
@@ -373,14 +395,15 @@ function openProjectModal(card, originEl){
 }
 
 function closeProjectModal(){
+  if (!modal.classList.contains('show') && !modal.classList.contains('open')) return;
+
   modal.classList.add('closing');
-  const onEnd = (e)=>{
-    if (e.propertyName !== 'transform') return;
-    modal.classList.remove('show','open','closing');
-    document.body.style.overflow = '';
-    modalCard.removeEventListener('transitionend', onEnd);
-  };
-  modalCard.addEventListener('transitionend', onEnd);
+  modal.classList.remove('show', 'open');
+  document.body.style.overflow = '';
+
+  window.setTimeout(() => {
+    modal.classList.remove('closing');
+  }, 320);
 }
 
 // Open from card buttons
@@ -392,6 +415,11 @@ document.querySelectorAll('.project-cta').forEach(btn=>{
 });
 closeSumBtn.addEventListener('click', closeProjectModal);
 backdrop.addEventListener('click', closeProjectModal);
+modal.addEventListener('click', e => {
+  if (e.target === modal) {
+    closeProjectModal();
+  }
+});
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && (modal.classList.contains('show') || modal.classList.contains('open'))) {
     closeProjectModal();

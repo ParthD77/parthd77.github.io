@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Parth Dhroovji | Portfolio</title>
-    <link rel="stylesheet" href="frontend/style.css?v=20260618-4">
+    <link rel="stylesheet" href="frontend/style.css?v=20260618-7">
     <meta charset="UTF-8">
 
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@latest/tsparticles.bundle.min.js"></script>
@@ -27,6 +27,7 @@
       <nav>
         <a href="#" data-scroll-to="heroflex">Home</a>
         <a href="#" data-scroll-to="about-me">About</a>
+        <a href="#" data-scroll-to="experience">Experience</a>
         <a href="#" data-scroll-to="projects">Projects</a>
         <a href="#" data-scroll-to="education">Education</a>
         <a href="#" data-scroll-to="contact-anchor">Contact</a>
@@ -85,11 +86,113 @@
     </section>
 
 
+    <section id="experience">
+      <div class="experience-heading">
+        <p class="section-eyebrow">Applied experience</p>
+        <h1>Work Experience</h1>
+        <p>I build software around real business constraints, not just technical demos.</p>
+      </div>
+
+      <div class="experience-shell">
+        <article class="experience-overview">
+          <div class="experience-brand">
+            <img src="frontend/assets/grabboba-logo.png" alt="Grab Bubble Tea and Chill logo">
+            <div>
+              <p class="experience-type">Client project</p>
+              <h3>Mobile & Full-Stack Developer</h3>
+              <p class="experience-company">Grab Bubble Tea and Chill</p>
+            </div>
+          </div>
+
+          <p class="experience-summary">Designed and developed a customer mobile experience and supporting staff tools for a local Ontario business, translating store operations into secure, practical software.</p>
+
+          <div class="experience-stack" aria-label="Technologies used">
+            <span>React Native</span>
+            <span>Expo</span>
+            <span>TypeScript</span>
+            <span>Supabase</span>
+            <span>Edge Functions</span>
+          </div>
+
+          <a class="experience-link" href="https://grabbubbleteaandchill.ca" target="_blank" rel="noopener">View live business site</a>
+        </article>
+
+        <div class="experience-detail">
+          <div class="experience-tabs" role="tablist" aria-label="GrabBoba project highlights">
+            <button class="experience-tab active" type="button" role="tab" aria-selected="true" data-experience-tab="product">Product</button>
+            <button class="experience-tab" type="button" role="tab" aria-selected="false" data-experience-tab="engineering">Engineering</button>
+            <button class="experience-tab" type="button" role="tab" aria-selected="false" data-experience-tab="operations">Operations</button>
+          </div>
+
+          <div class="experience-panels">
+            <div class="experience-panel active" role="tabpanel" data-experience-panel="product">
+              <p class="experience-kicker">Customer experience</p>
+              <h3>Turned a physical menu and loyalty program into a focused mobile product.</h3>
+              <ul>
+                <li>Built searchable, category-driven menu browsing backed by live menu data.</li>
+                <li>Implemented customer accounts, loyalty balances, rewards, and member codes.</li>
+                <li>Kept the MVP honest by separating shipped loyalty features from future ordering and payment scope.</li>
+              </ul>
+            </div>
+
+            <div class="experience-panel" role="tabpanel" data-experience-panel="engineering" hidden>
+              <p class="experience-kicker">Secure architecture</p>
+              <h3>Connected mobile, web, and backend systems with clear authorization boundaries.</h3>
+              <ul>
+                <li>Used Supabase Auth, RLS, Edge Functions, and secure device session storage.</li>
+                <li>Designed immutable loyalty ledger events instead of unsafe direct balance edits.</li>
+                <li>Added account deletion and privacy behavior aligned with App Store requirements.</li>
+              </ul>
+            </div>
+
+            <div class="experience-panel" role="tabpanel" data-experience-panel="operations" hidden>
+              <p class="experience-kicker">In-store workflow</p>
+              <h3>Built staff tooling around the speed and constraints of a real counter.</h3>
+              <ul>
+                <li>Created an iPad-friendly staff dashboard for customer lookup and loyalty actions.</li>
+                <li>Added QR scanning with native and WebKit-compatible fallback decoding.</li>
+                <li>Separated compact operator controls from debug and transaction-review tools.</li>
+              </ul>
+            </div>
+          </div>
+
+          <img class="experience-photo" src="frontend/assets/grabboba-storefront.jpg" alt="Grab Bubble Tea and Chill storefront">
+        </div>
+      </div>
+    </section>
+
+
     
     <section id="projects">
       <div id="project-title"><h1>Projects</h1></div>
 
       <div class="project proj1"
+          data-title="Prox - Friends"
+          data-desc="
+          Available on the Apple App Store.<br>
+          Built a cross-platform mobile app with Expo, React Native, and TypeScript for anonymous nearby-friend alerts.<br>
+          Designed explicit, short-lived location sharing so identities and map pins appear only after a user chooses to share for a current proximity event.<br>
+          Implemented Supabase Auth, Row Level Security, RPC-mediated friendship actions, private profile storage, and Edge Functions for location updates, push tokens, and account deletion.<br>
+          Added exact or approximate visibility, private-zone suppression, blocking, background location, push notifications, and in-app privacy controls.
+          "
+          data-repo="https://apps.apple.com/us/app/proxi-friends/id6760445064"
+          data-link-label="Download on App Store"
+          data-modalimg="frontend/assets/proxi-icon.png">
+        <div class="project-content">
+          <div class="project-status">Available on the App Store</div>
+          <h3>Prox - Friends</h3>
+          <p>A privacy-first mobile app that anonymously alerts approved friends when they are nearby, revealing identity and location only after explicit, time-limited sharing.</p>
+          <div class="project-actions">
+            <button class="project-cta" data-open>Learn More →</button>
+            <a class="app-store-link" href="https://apps.apple.com/us/app/proxi-friends/id6760445064" target="_blank" rel="noopener">Download</a>
+          </div>
+        </div>
+        <div class="project-thumb proxi-thumb">
+          <img src="frontend/assets/proxi-icon.png" alt="Proxi app icon">
+        </div>
+      </div>
+
+      <div class="project proj2"
           data-title="Neuro-evolution AI Sim"
           data-desc="
           NEAT (Neuro-Evolution of Augmenting Topologies) is a neuro-evolution framework where both neural network weights and topologies evolve over time.<br>
@@ -110,7 +213,7 @@
         </div>
       </div>
 
-      <div class="project proj2"
+      <div class="project proj3"
           data-title="YoutubeShortBot"
           data-desc="
           YouTubeShortBot is an AI-powered content automation tool built with Python, OpenAI’s API, and MoviePy for intelligent video editing. <br>
@@ -129,7 +232,7 @@
         </div>
       </div>
 
-      <div class="project proj3"
+      <div class="project proj4"
           data-title="AI-powered Full-stack Portfolio"
           data-desc="
           Full-stack web app built with HTML, CSS, JavaScript, and a Flask backend deployed on Render. <br>
@@ -150,7 +253,7 @@
         </div>
       </div>
 
-      <div class="project proj4"
+      <div class="project proj5"
           data-title="SHMUP – Retro Space Shooter"
           data-desc="
           Developed in Python and Java with a modular architecture separating rendering, physics, and event systems. <br>
@@ -170,7 +273,7 @@
         </div>
       </div>
 
-      <div class="project proj5"
+      <div class="project proj6"
           data-title="Music Mixer – Java Beat Maker"
           data-desc="
           Built in Java using JavaFX for the interactive UI and Java Sound API for low-latency audio playback. <br>
@@ -187,6 +290,27 @@
         </div>
         <div class="project-thumb">
           <img src="frontend/assets/music-mixer.png" alt="Music mixer preview">
+        </div>
+      </div>
+
+      <div class="project proj6"
+          data-title="Proxi – Privacy-First Nearby Friends"
+          data-desc="
+          Built a cross-platform mobile app with Expo, React Native, and TypeScript for anonymous nearby-friend alerts.<br>
+          Designed explicit, short-lived location sharing so identities and map pins appear only after a user chooses to share for a current proximity event.<br>
+          Implemented Supabase Auth, Row Level Security, RPC-mediated friendship actions, private profile storage, and Edge Functions for location updates, push tokens, and account deletion.<br>
+          Added exact or approximate visibility, private-zone suppression, blocking, background location, push notifications, and in-app privacy controls.
+          "
+          data-repo=""
+          data-legacy-proxi="true"
+          data-modalimg="frontend/assets/proxi-icon.png">
+        <div class="project-content">
+          <h3>Proxi – Privacy-First Nearby Friends</h3>
+          <p>A mobile app that anonymously alerts approved friends when they are nearby, then reveals identity and location only after explicit, time-limited sharing. Built around privacy-first location architecture rather than permanent tracking.</p>
+          <button class="project-cta" data-open>Learn More →</button>
+        </div>
+        <div class="project-thumb proxi-thumb">
+          <img src="frontend/assets/proxi-icon.png" alt="Proxi app icon">
         </div>
       </div>
     </section>
@@ -342,7 +466,7 @@
 
 
 
-    <script src="frontend/script.js?v=20260618-4"></script>
+    <script src="frontend/script.js?v=20260618-7"></script>
 
   </body>
 </html>
