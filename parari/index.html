@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101820">
+    <title>Parari | Websites and Apps for Local Businesses</title>
+    <meta
+      name="description"
+      content="Parari builds fast websites and simple apps for local businesses that need more leads, bookings, and online credibility."
+    >
+    <style>
+      :root {
+        --ink: #101820;
+        --muted: #53606d;
+        --line: #d9e1e8;
+        --paper: #f7f8f4;
+        --panel: #ffffff;
+        --green: #177245;
+        --blue: #2357a5;
+        --gold: #d08a1e;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--paper);
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.5;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .wrap {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      header {
+        border-bottom: 1px solid var(--line);
+        background: rgba(247, 248, 244, 0.92);
+        position: sticky;
+        top: 0;
+        z-index: 3;
+      }
+
+      .nav {
+        min-height: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+
+      .mark {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        display: grid;
+        place-items: center;
+        color: white;
+        background: var(--ink);
+        font-size: 17px;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 18px;
+        border-radius: 8px;
+        background: var(--green);
+        color: white;
+        font-weight: 700;
+        text-decoration: none;
+        border: 1px solid var(--green);
+      }
+
+      .button.secondary {
+        background: transparent;
+        color: var(--ink);
+        border-color: var(--line);
+      }
+
+      main {
+        overflow: hidden;
+      }
+
+      .hero {
+        min-height: calc(100vh - 68px);
+        display: grid;
+        align-items: center;
+        padding: 58px 0 34px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr);
+        gap: 46px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        margin: 0 0 14px;
+        color: var(--green);
+        font-size: 13px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        margin-bottom: 18px;
+        max-width: 760px;
+        font-size: clamp(42px, 7vw, 82px);
+        line-height: 0.95;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 650px;
+        margin-bottom: 28px;
+        color: #33414e;
+        font-size: 20px;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .trust {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 34px;
+        max-width: 680px;
+      }
+
+      .trust div {
+        padding-top: 14px;
+        border-top: 3px solid var(--line);
+      }
+
+      .trust strong {
+        display: block;
+        font-size: 22px;
+      }
+
+      .trust span {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .visual {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        border-radius: 8px;
+        box-shadow: 0 22px 70px rgba(16, 24, 32, 0.14);
+        overflow: hidden;
+      }
+
+      .browser-bar {
+        height: 38px;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 0 14px;
+        border-bottom: 1px solid var(--line);
+        background: #eef3f0;
+      }
+
+      .browser-bar span {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--gold);
+      }
+
+      .browser-bar span:nth-child(2) {
+        background: var(--green);
+      }
+
+      .browser-bar span:nth-child(3) {
+        background: var(--blue);
+      }
+
+      .visual-body {
+        display: grid;
+        grid-template-columns: 1fr 130px;
+        gap: 22px;
+        align-items: center;
+        min-height: 390px;
+        padding: 28px;
+      }
+
+      .site-preview {
+        min-height: 292px;
+        border-radius: 8px;
+        background:
+          linear-gradient(rgba(16, 24, 32, 0.08), rgba(16, 24, 32, 0.08)),
+          url("../frontend/assets/website.png") center / cover;
+        border: 1px solid var(--line);
+      }
+
+      .phone-preview {
+        width: 100%;
+        max-width: 128px;
+        justify-self: center;
+        filter: drop-shadow(0 16px 24px rgba(16, 24, 32, 0.2));
+      }
+
+      section {
+        padding: 70px 0;
+      }
+
+      .section-head {
+        max-width: 680px;
+        margin-bottom: 28px;
+      }
+
+      h2 {
+        margin-bottom: 10px;
+        font-size: clamp(30px, 4vw, 48px);
+        line-height: 1.05;
+        letter-spacing: 0;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .services {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .card {
+        min-height: 210px;
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+      }
+
+      .card h3 {
+        margin-bottom: 10px;
+        font-size: 22px;
+      }
+
+      .card p {
+        margin-bottom: 0;
+        color: var(--muted);
+      }
+
+      .stripe {
+        background: #101820;
+        color: white;
+      }
+
+      .stripe .muted {
+        color: #c6d0d9;
+      }
+
+      .process {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1px;
+        overflow: hidden;
+        border: 1px solid #31404e;
+        border-radius: 8px;
+        background: #31404e;
+      }
+
+      .step {
+        min-height: 180px;
+        padding: 20px;
+        background: #152231;
+      }
+
+      .step span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        margin-bottom: 18px;
+        border-radius: 8px;
+        background: var(--gold);
+        color: #101820;
+        font-weight: 800;
+      }
+
+      .proof {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        gap: 30px;
+        align-items: center;
+      }
+
+      .proof-media {
+        min-height: 330px;
+        border-radius: 8px;
+        background: url("../frontend/assets/grabboba-storefront.jpg") center / cover;
+        border: 1px solid var(--line);
+      }
+
+      .list {
+        display: grid;
+        gap: 12px;
+        margin: 24px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .list li {
+        padding-left: 28px;
+        position: relative;
+      }
+
+      .list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 8px;
+        width: 12px;
+        height: 12px;
+        border-radius: 4px;
+        background: var(--green);
+      }
+
+      .cta {
+        padding-bottom: 88px;
+      }
+
+      .cta-panel {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 22px;
+        align-items: center;
+        padding: 28px;
+        border-radius: 8px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+
+      .cta-panel h2 {
+        font-size: clamp(28px, 4vw, 44px);
+      }
+
+      footer {
+        padding: 24px 0;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      footer .wrap {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      @media (max-width: 860px) {
+        .nav-links a:not(.button) {
+          display: none;
+        }
+
+        .hero {
+          min-height: auto;
+        }
+
+        .hero-grid,
+        .proof,
+        .cta-panel {
+          grid-template-columns: 1fr;
+        }
+
+        .visual-body {
+          grid-template-columns: 1fr;
+        }
+
+        .phone-preview {
+          display: none;
+        }
+
+        .services,
+        .process,
+        .trust {
+          grid-template-columns: 1fr;
+        }
+
+        .cta-panel .button {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .wrap {
+          width: min(100% - 24px, 1120px);
+        }
+
+        .nav {
+          min-height: 62px;
+        }
+
+        .brand span:last-child {
+          display: none;
+        }
+
+        h1 {
+          font-size: 42px;
+        }
+
+        .lead {
+          font-size: 18px;
+        }
+
+        .visual-body,
+        .card,
+        .cta-panel {
+          padding: 18px;
+        }
+
+        .site-preview {
+          min-height: 220px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap nav">
+        <a class="brand" href="/parari/" aria-label="Parari home">
+          <span class="mark">P</span>
+          <span>Parari</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="#services">Services</a>
+          <a href="#process">Process</a>
+          <a href="#contact" class="button">Start a project</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div>
+            <p class="eyebrow">Websites and apps for local businesses</p>
+            <h1>Get a fast site that helps customers trust you.</h1>
+            <p class="lead">
+              Parari creates clean websites, booking flows, menus, dashboards, and small apps for
+              local businesses that need to look established online without a slow agency process.
+            </p>
+            <div class="actions">
+              <a class="button" href="mailto:parth.dhroovji@gmail.com?subject=Parari%20website%20project">Email Parari</a>
+              <a class="button secondary" href="#services">View services</a>
+            </div>
+            <div class="trust" aria-label="Project strengths">
+              <div>
+                <strong>Fast</strong>
+                <span>Lightweight static pages and simple tools.</span>
+              </div>
+              <div>
+                <strong>Local</strong>
+                <span>Built for restaurants, clinics, salons, shops, and services.</span>
+              </div>
+              <div>
+                <strong>Practical</strong>
+                <span>Clear pricing, clear scope, no bloated tech.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="visual" aria-label="Website and mobile preview">
+            <div class="browser-bar" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="visual-body">
+              <div class="site-preview" role="img" aria-label="Sample website preview"></div>
+              <img class="phone-preview" src="../frontend/assets/phone.png" alt="Mobile app preview">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">What Parari builds</p>
+            <h2>Simple digital tools that make your business easier to find and use.</h2>
+            <p class="muted">
+              Start with a one-page site, then add the pieces your customers actually need.
+            </p>
+          </div>
+
+          <div class="services">
+            <article class="card">
+              <h3>Business websites</h3>
+              <p>Modern landing pages, service pages, contact forms, menus, galleries, and launch-ready hosting setup.</p>
+            </article>
+            <article class="card">
+              <h3>Customer flows</h3>
+              <p>Booking links, quote forms, order requests, intake forms, and automations that reduce back-and-forth.</p>
+            </article>
+            <article class="card">
+              <h3>Small apps</h3>
+              <p>Internal dashboards, inventory helpers, customer portals, and lightweight tools built around your workflow.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="process" class="stripe">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">How it works</p>
+            <h2>A small, direct build process.</h2>
+            <p class="muted">Most projects start with one focused version that can go live quickly.</p>
+          </div>
+
+          <div class="process">
+            <div class="step">
+              <span>1</span>
+              <h3>Scope</h3>
+              <p class="muted">Define the goal, pages, features, timeline, and launch requirements.</p>
+            </div>
+            <div class="step">
+              <span>2</span>
+              <h3>Design</h3>
+              <p class="muted">Create a clean structure that matches your business and customers.</p>
+            </div>
+            <div class="step">
+              <span>3</span>
+              <h3>Build</h3>
+              <p class="muted">Develop the website or app with mobile-friendly, fast-loading code.</p>
+            </div>
+            <div class="step">
+              <span>4</span>
+              <h3>Launch</h3>
+              <p class="muted">Connect your domain, test the experience, and make it public.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap proof">
+          <div class="proof-media" role="img" aria-label="Local storefront"></div>
+          <div>
+            <p class="eyebrow">Made for real businesses</p>
+            <h2>Useful before flashy.</h2>
+            <p class="muted">
+              A good local business site should answer the basics fast: what you offer, where you
+              are, how to contact you, and why someone should choose you.
+            </p>
+            <ul class="list">
+              <li>Clear service descriptions and calls to action.</li>
+              <li>Responsive design for phone-first customers.</li>
+              <li>Search-friendly page structure and performance.</li>
+              <li>Simple updates when your hours, prices, or services change.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="cta">
+        <div class="wrap cta-panel">
+          <div>
+            <p class="eyebrow">Start small</p>
+            <h2>Need a business website or app?</h2>
+            <p class="muted">
+              Send a short note about your business, what you need, and when you want to launch.
+            </p>
+          </div>
+          <a class="button" href="mailto:parth.dhroovji@gmail.com?subject=Parari%20website%20project">parth.dhroovji@gmail.com</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <span>Parari</span>
+        <span>Websites and apps for local businesses.</span>
+      </div>
+    </footer>
+  </body>
+</html>

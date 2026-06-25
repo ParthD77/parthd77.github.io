@@ -220,6 +220,7 @@ inputBox.addEventListener('keydown', e => {
 
 
 
+
 // BACKEND
 function extractChatMessage(payload) {
   let value = payload;
