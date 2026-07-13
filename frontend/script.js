@@ -345,6 +345,41 @@ const modalRepo  = document.getElementById('modal-repo');
 const closeSumBtn   = modal.querySelector('.modal-close');
 const backdrop   = modal.querySelector('.modal-backdrop');
 
+function escapeHtml(value) {
+  return value.replace(/[&<>"']/g, char => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  })[char]);
+}
+
+function getProjectBullets(card) {
+  const raw = (card.dataset.desc || "").trim();
+
+  return raw
+    .replace(/<br\s*\/?>/gi, "\n")
+    .split(/\n+/)
+    .map(item => item.trim())
+    .filter(Boolean);
+}
+
+function renderProjectBullets(card) {
+  const bullets = getProjectBullets(card);
+
+  if (!bullets.length) {
+    modalBody.innerHTML = '<p class="modal-empty">More project details coming soon.</p>';
+    return;
+  }
+
+  modalBody.innerHTML = `
+    <p class="modal-section-label">Project highlights</p>
+    <ul class="desc-list">
+      ${bullets.map(item => `<li>${escapeHtml(item)}</li>`).join("")}
+    </ul>`;
+}
+
 function setModalOriginFrom(el){
   const r = el.getBoundingClientRect();
   const cx = r.left + r.width / 2;
@@ -355,26 +390,22 @@ function setModalOriginFrom(el){
 
 function openProjectModal(card, originEl){
   const title = card.dataset.title || card.querySelector('h3')?.textContent || 'Project';
-  const desc  = card.dataset.desc  || 'More details coming soon.';
   const repo  = card.dataset.repo  || ''; // e.g., https://github.com/ParthD77/rot_vid_gen
   const linkLabel = card.dataset.linkLabel || 'View on GitHub';
   const img   = card.dataset.modalimg || card.querySelector('.project-thumb img')?.src || '';
+  const imageFit = card.dataset.imageFit || 'cover';
 
   modalTitle.textContent = title;
-  const raw = (card.dataset.desc || "").trim();
-  const lines = raw.split(/\n+/).map(s => s.trim()).filter(Boolean);
-  modalBody.innerHTML = `
-    <ul class="desc-list">
-      ${lines.map(li => `<li>${li}</li>`).join("")}
-    </ul>`;
-
+  renderProjectBullets(card);
 
   if (img) {
     modalImage.src = img;
     modalImage.alt = `${title} preview`;
+    modalImage.classList.toggle('is-contain', imageFit === 'contain');
     modalImage.parentElement.style.display = '';
   } else {
     modalImage.src = '';
+    modalImage.classList.remove('is-contain');
     modalImage.parentElement.style.display = 'none';
   }
 
@@ -382,7 +413,7 @@ function openProjectModal(card, originEl){
     modalRepo.href = repo;
     modalRepo.textContent = linkLabel;
     modalRepo.style.display = 'inline-flex';
-    modalRepo.setAttribute('aria-label', `Open ${title} on GitHub`);
+    modalRepo.setAttribute('aria-label', `Open ${title}: ${linkLabel}`);
   } else {
     modalRepo.removeAttribute('href');
     modalRepo.textContent = 'View on GitHub';
