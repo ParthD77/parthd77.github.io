@@ -33,7 +33,7 @@ const settingsScreen = document.getElementById("settings-screen");
 const touchControls = document.getElementById("touch-controls");
 const pauseButton = document.getElementById("pause-button");
 const networkButton = document.getElementById("network-button");
-const settingsButton = document.getElementById("settings-button");
+const exitButton = document.getElementById("exit-button");
 const speedSlider = document.getElementById("speed-slider");
 const speedOutput = document.getElementById("speed-output");
 const networkDialog = document.getElementById("network-dialog");
@@ -596,13 +596,7 @@ class TrainingLab {
     ctx.fill();
     drawNetwork(ctx, champion, { x: 515, y: 325, width: 290, height: 330 });
 
-    [
-      "S: open expanded network view",
-      "P: pause",
-      "Esc: return to settings"
-    ].forEach((line, index) =>
-      drawText(ctx, line, 520, 690 + index * 24, 13, COLORS.muted)
-    );
+    drawText(ctx, "S: network  P: pause  Esc: exit", 520, 672, 12, COLORS.muted);
 
   }
 }
@@ -751,7 +745,7 @@ document.addEventListener("keydown", event => {
 
 pauseButton.addEventListener("click", () => lab.togglePause());
 networkButton.addEventListener("click", openNetworkView);
-settingsButton.addEventListener("click", () => lab.returnToSettings());
+exitButton.addEventListener("click", () => lab.returnToSettings());
 speedSlider.addEventListener("input", () => {
   lab.speedMultiplier = Number(speedSlider.value);
   speedOutput.value = `${lab.speedMultiplier.toFixed(1)}×`;
