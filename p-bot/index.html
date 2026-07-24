@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="P-Bot is Parth Dhroovji's private personal briefing assistant for Telegram, Gmail, and selected news sources.">
+  <title>P-Bot | Personal Briefing Assistant</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell nav">
+      <a class="brand" href="./"><span class="brand-mark">PB</span> P-Bot</a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a aria-current="page" href="./">Home</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Private personal software</p>
+          <h1>Your daily information, filtered.</h1>
+          <p class="lead">P-Bot is a personal Telegram assistant that prepares concise briefings from authorized Gmail accounts and selected news sources. Access is restricted to approved users.</p>
+          <div class="actions">
+            <a class="button" href="privacy.html">Read the privacy policy</a>
+            <a class="button secondary" href="terms.html">View terms of service</a>
+          </div>
+        </div>
+
+        <aside class="status-card" aria-label="Application details">
+          <div class="status-label"><span class="status-dot"></span> Personal-use application</div>
+          <ul class="feature-list">
+            <li>Uses Google OAuth to connect only accounts explicitly authorized by their owner.</li>
+            <li>Requests read-only Gmail access and does not send, delete, archive, or modify email.</li>
+            <li>Delivers summaries through a private Telegram bot restricted to approved user IDs.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="section" aria-labelledby="how-it-works">
+        <p class="eyebrow">How it works</p>
+        <h2 id="how-it-works">A focused briefing pipeline</h2>
+        <p class="section-intro">The application collects only the information needed to create a requested briefing, processes it for that purpose, and presents the result to an authorized user.</p>
+        <div class="grid">
+          <article class="card">
+            <h3>1. Authorize</h3>
+            <p>The account owner signs in through Google's OAuth flow and grants the displayed permissions.</p>
+          </article>
+          <article class="card">
+            <h3>2. Summarize</h3>
+            <p>P-Bot reads relevant message data and generates a concise personal briefing.</p>
+          </article>
+          <article class="card">
+            <h3>3. Deliver</h3>
+            <p>The briefing is sent only through the private Telegram interface configured for the application.</p>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-row">
+      <span>© 2026 Parth Dhroovji. P-Bot is a private personal project.</span>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="https://github.com/ParthD77/P-bot" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
